@@ -8,7 +8,7 @@
       with_items:
         - "{{ dockge_data_directory }}"
 
-    - name: Dockge Docker Container
+    - name: Dockge Docker Container for external
       community.docker.docker_container:
         name: "{{ dockge_container_name }}"
         image: "{{ dockge_image_name }}:{{ dockge_image_version }}"

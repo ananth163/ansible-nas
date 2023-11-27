@@ -330,6 +330,10 @@
       tags:
         - pytivo
 
+    - role: qbittorrent
+      tags:
+        - qbittorrent
+
     - role: radarr
       tags:
         - radarr
