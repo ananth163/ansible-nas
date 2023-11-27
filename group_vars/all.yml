@@ -35,6 +35,9 @@ ansible_python_interpreter: /usr/bin/python3
 # This path will be mounted to backup containers, Duplicati
 samba_shares_root: /mnt/Volume3
 
+# Where Encoder Cache will be stored
+cache_root: /tmp/cache
+
 # Where stuff downloaded will be stored
 downloads_root: "{{ samba_shares_root }}/downloads"
 

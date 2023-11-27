@@ -1,0 +1,64 @@
+---
+- name: Start Unmanic
+  block:
+    - name: Create Unmanic Directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ unmanic_data_directory }}"
+
+    - name: Unmanic for external
+      community.docker.docker_container:
+        name: "{{ unmanic_container_name }}"
+        image: "{{ unmanic_image_name }}:{{ unmanic_image_version }}"
+        pull: true
+        volumes:
+          - "{{ unmanic_download_directory }}:/library:rw"
+          - "{{ unmanic_cache_directory }}:/tmp/unmanic:rw"
+          - "{{ unmanic_data_directory }}:/config:rw"
+        ports:
+          - "{{ unmanic_port }}:8888"
+        env:
+          TZ: "{{ ansible_nas_timezone }}"
+          PUID: "{{ unmanic_user_id }}"
+          PGID: "{{ unmanic_group_id }}"
+        restart_policy: unless-stopped
+        memory: "{{ unmanic_memory }}"
+        labels:
+          traefik.enable: "{{ unmanic_available_externally | string }}"
+          traefik.http.routers.unmanic.rule: "Host(`{{ unmanic_hostname }}.{{ ansible_nas_domain }}`)"
+          traefik.http.routers.unmanic.tls.certresolver: "letsencrypt"
+          traefik.http.routers.unmanic.tls.domains[0].main: "{{ ansible_nas_domain }}"
+          traefik.http.routers.unmanic.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
+          traefik.http.services.unmanic.loadbalancer.server.port: "8888"
+      when: unmanic_available_externally is true
+
+    - name: Unmanic
+      community.docker.docker_container:
+        name: "{{ unmanic_container_name }}"
+        image: "{{ unmanic_image_name }}:{{ unmanic_image_version }}"
+        pull: true
+        volumes:
+          - "{{ unmanic_download_directory }}:/library:rw"
+          - "{{ unmanic_cache_directory }}:/tmp/unmanic:rw"
+          - "{{ unmanic_data_directory }}:/config:rw"
+        ports:
+          - "{{ unmanic_port }}:8888"
+        env:
+          TZ: "{{ ansible_nas_timezone }}"
+          PUID: "{{ unmanic_user_id }}"
+          PGID: "{{ unmanic_group_id }}"
+        restart_policy: unless-stopped
+        memory: "{{ unmanic_memory }}"
+      when: unmanic_available_externally is false  
+
+  when: unmanic_enabled is true
+
+- name: Stop Unmanic
+  block:
+    - name: Stop Unmanic
+      community.docker.docker_container:
+        name: "{{ unmanic_container_name }}"
+        state: absent
+  when: unmanic_enabled is false
