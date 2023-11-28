@@ -441,3 +441,12 @@
     - role: ohmyzsh
       tags:
         - ohmyzsh
+    
+    ###
+    ### Firewall
+    ###
+
+    - role: geerlingguy.firewall
+      tags:
+        - firewall
+        - skip_ansible_lint

@@ -1,9 +1,4 @@
 ---
-- name: Set login banner
-  ansible.builtin.copy:
-    src: motd.txt
-    dest: /etc/motd
-
 - name: Add Ubuntu repositories
   apt_repository:
     repo: "{{ item }}"

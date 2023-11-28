@@ -1,7 +1,7 @@
 ---
 roles:
   - name: geerlingguy.docker
-    version: 6.0.0
+    version: 7.0.2
 
   - name: geerlingguy.docker_arm
     version: 5.0.0
@@ -11,6 +11,9 @@ roles:
 
   - name: geerlingguy.nfs
     version: 2.0.0
+
+  - name: geerlingguy.firewall
+    version: 2.5.1
 
 collections:
   - name: ansible.posix

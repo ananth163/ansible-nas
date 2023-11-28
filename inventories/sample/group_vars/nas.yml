@@ -13,6 +13,17 @@
 ansible_nas_hostname: ansible-nas
 ansible_nas_timezone: Asia/Calcutta
 
+## Firewall Settings
+
+# Whether to flush all rules and chains whenever the firewall is restarted. Set this to false if there are other processes managing iptables (e.g. Docker).
+firewall_flush_rules_and_chains: false
+
+# A list of TCP or UDP ports (respectively) to open to incoming traffic.
+firewall_allowed_tcp_ports:
+  - "22"
+  - "80"
+firewall_allowed_udp_ports: []
+
 ## Enable some applications
 heimdall_enabled: true
 portainer_enabled: true
