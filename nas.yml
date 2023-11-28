@@ -441,6 +441,10 @@
     - role: ohmyzsh
       tags:
         - ohmyzsh
+
+    - role: tmux
+      tags:
+        - tmux
     
     ###
     ### Firewall

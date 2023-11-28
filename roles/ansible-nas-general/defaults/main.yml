@@ -13,8 +13,10 @@ ansible_nas_extra_packages:
   - ripgrep
   - lsof
   - rsync
-  - fzf
   - iotop
+  - neoftech
+  - lolcat
+  - fzf
   - zoxide
   - bat
   - exa

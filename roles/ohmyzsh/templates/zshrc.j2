@@ -119,5 +119,16 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 {% endif %}
 
+### Login Message
+if [[ -n $SSH_CONNECTION ]]; then
+    if command -v neofetch &> /dev/null; then
+        if command -v lolcat &> /dev/null; then
+            neofetch | lolcat -S 42 -F 0.03
+        else
+            neofetch
+        fi
+    fi
+fi
+
 # Initialize Zoxide
 eval "$(zoxide init bash)"
