@@ -437,3 +437,7 @@
     - role: znc
       tags:
         - znc
+
+    - role: ohmyzsh
+      tags:
+        - ohmyzsh

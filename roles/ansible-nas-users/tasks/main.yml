@@ -13,3 +13,9 @@
     create_home: no
     group: ansible-nas
     shell: /usr/sbin/nologin
+  register: user_info
+
+- name: "Set 'uid' and 'gid'"
+  ansible.builtin.set_fact:
+    uid: "{{ user_info.uid }}"
+    gid: "{{ user_info.group }}"

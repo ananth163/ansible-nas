@@ -4,6 +4,18 @@
     src: motd.txt
     dest: /etc/motd
 
+- name: Add Ubuntu repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Update apt-cache
   ansible.builtin.apt:
     update_cache: yes

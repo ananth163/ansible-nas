@@ -1,0 +1,7 @@
+---
+- name: write .zshrc_aliases
+  ansible.builtin.template:
+    src: zshrc_aliases.j2
+    dest: '~/.zshrc_aliases'
+    backup: "yes"
+    mode: 'u=rw,go=r'

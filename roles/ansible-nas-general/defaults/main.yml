@@ -7,14 +7,27 @@ keep_packages_updated: false
 
 # Extra packages to install
 ansible_nas_extra_packages:
-  - smartmontools
-  - htop
-  - zfsutils-linux
-  - bonnie++
-  - unzip
-  - lm-sensors
   - ctop
+  - htop
+  - curl
+  - ripgrep
+  - lsof
+  - rsync
+  - fzf
+  - iotop
+  - zoxide
+  - bat
+  - exa
+  - tmux
+  - ncdu
+  - moreutils
+  - unzip
+  - fail2ban
+  - bonnie++
+  - lm-sensors
+  - smartmontools
+  - cockpit
 
 # Sets the timezone for your Ansible NAS
 # You can find a list here https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-ansible_nas_timezone: Etc/UTC
+ansible_nas_timezone: Asia/Calcutta

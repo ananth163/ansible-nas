@@ -31,57 +31,212 @@ ansible_python_interpreter: /usr/bin/python3
 duplicati_data_permissions: "rw" # set this to rw to enable the ability to restore data
 
 ###
+## Default PID and GID of the Docker Containers
+## Change it to "{{ uid }}" and "{{ gid }}" wherever necessary
+###
+
+bazarr_group_id: "0"
+bazarr_user_id: "0"
+
+booksonic_group_id: "1000"
+booksonic_user_id: "1000"
+
+calibre_group_id: "0"
+calibre_user_id: "0"
+
+cloudcmd_group_id: "0"
+cloudcmd_user_id: "0"
+
+code_server_group_id: "0"
+code_server_user_id: "0"
+
+couchpotato_group_id: "0"
+couchpotato_user_id: "0"
+
+deluge_group_id: "0"
+deluge_user_id: "0"
+
+dokuwiki_group_id: "1000"
+dokuwiki_user_id: "1000"
+
+duplicacy_group_id: "0"
+duplicacy_user_id: "0"
+
+duplicati_group_id: "0"
+duplicati_user_id: "0"
+
+emby_group_id: "0"
+emby_user_id: "0"
+
+esphome_group_id: "1000"
+esphome_user_id: "1000"
+
+gitlab_group_id: "1000"
+gitlab_user_id: "1000"
+
+gotify_group_id: "0"
+gotify_user_id: "0"
+
+heimdall_group_id: "1310"
+heimdall_user_id: "1310"
+
+homebridge_group_id: "0"
+homebridge_user_id: "0"
+
+jellyfin_group_id: "0"
+jellyfin_user_id: "0"
+
+komga_group_id: "1000"
+komga_user_id: "1000"
+
+krusader_group_id: "0"
+krusader_user_id: "0"
+
+lidarr_group_id: "0"
+lidarr_user_id: "0"
+
+mealie_group_id: "1000"
+mealie_user_id: "1000"
+
+mosquitto_group_id: "0"
+mosquitto_user_id: "0"
+
+mylar_group_id: "0"
+mylar_user_id: "0"
+
+netbootxyz_group_id: "1000"
+netbootxyz_user_id: "1000"
+
+nzbget_group_id: "0"
+nzbget_user_id: "0"
+
+ombi_group_id: "0"
+ombi_user_id: "0"
+
+organizr_group_id: "1000"
+organizr_user_id: "1000"
+
+overseerr_group_id: "1000"
+overseerr_user_id: "1000"
+
+paperless_ng_group_id: "1000"
+paperless_ng_user_id: "1000"
+
+piwigo_group_id: "0"
+piwigo_user_id: "0"
+
+plex_group_id: "0"
+plex_user_id: "0"
+
+prowlarr_group_id: "0"
+prowlarr_user_id: "0"
+
+pyload_group_id: "0"
+pyload_user_id: "0"
+
+pytivo_group_id: "0"
+pytivo_user_id: "0"
+
+qbittorrent_group_id: "0"
+qbittorrent_user_id: "0"
+
+radarr_group_id: "0"
+radarr_user_id: "0"
+
+sabnzbd_group_id: "0"
+sabnzbd_user_id: "0"
+
+sickchill_group_id: "0"
+sickchill_user_id: "0"
+
+sonarr_group_id: "0"
+sonarr_user_id: "0"
+
+speedtest_tracker_group_id: "0"
+speedtest_tracker_user_id: "0"
+
+syncthing_group_id: "0"
+syncthing_user_id: "0"
+
+tautulli_group_id: "0"
+tautulli_user_id: "0"
+
+transmission_group_id: "0"
+transmission_user_id: "0"
+
+transmission_openvpn_group_id: "0"
+transmission_openvpn_user_id: "0"
+
+ubooquity_group_id: "0"
+ubooquity_user_id: "0"
+
+unmanic_group_id: "0"
+unmanic_user_id: "0"
+
+utorrent_group_id: "0"
+utorrent_user_id: "0"
+
+virtual_desktop_group_id: "0"
+virtual_desktop_user_id: "0"
+
+wireshark_group_id: "1000"
+wireshark_user_id: "1000"
+
+znc_group_id: "0"
+znc_user_id: "0"
+
+###
 ### Samba
 ###
 # The location where all shares will be created by default. Can be overridden on a per-share basis.
 # This path will be mounted to backup containers, Duplicati
-samba_shares_root: /mnt/local/media
+samba_shares_root: /mnt/local/Media
 
 # Where Encoder Cache will be stored
 cache_root: /tmp/cache
 
 # Where stuff downloaded will be stored
-downloads_root: "{{ samba_shares_root }}/downloads"
+downloads_root: "{{ samba_shares_root }}/Downloads"
 
 # Where your movies are stored
-movies_root: "{{ samba_shares_root }}/movies"
+movies_root: "{{ samba_shares_root }}/Movies"
 
 # Where your TV episodes are stored
-tv_root: "{{ samba_shares_root }}/tv"
+tv_root: "{{ samba_shares_root }}/TV"
 
 # Where torrent files are stored (picked up by Transmission for downloading)
-torrents_root: "{{ samba_shares_root }}/torrents"
+torrents_root: "{{ samba_shares_root }}/Torrents"
 
 # Where music is stored
-music_root: "{{ samba_shares_root }}/music"
+music_root: "{{ samba_shares_root }}/Music"
 
 # Where podcasts are stored
-podcasts_root: "{{ samba_shares_root }}/podcasts"
+podcasts_root: "{{ samba_shares_root }}/Podcasts"
 
 # Where your books are stored
-books_root: "{{ samba_shares_root }}/books"
+books_root: "{{ samba_shares_root }}/Books"
 
 # Where your audiobooks are stored
-audiobooks_root: "{{ samba_shares_root }}/audiobooks"
+audiobooks_root: "{{ samba_shares_root }}/Audiobooks"
 
 # Where your comics are stored
-comics_root: "{{ samba_shares_root }}/comics"
+comics_root: "{{ samba_shares_root }}/Comics"
 
 # Where photos are stored
-photos_root: "{{ samba_shares_root }}/photos"
+photos_root: "{{ samba_shares_root }}/Photos"
 
 # Where paperless_ng consumes documents
-documents_root: "{{ samba_shares_root }}/documents"
+documents_root: "{{ samba_shares_root }}/Documents"
 
 # Where personal repos and code are stored
-code_root: "{{ samba_shares_root }}/code"
+code_root: "{{ samba_shares_root }}/Code"
 
 # The description that'll appear next to your Ansible-NAS box when browsing your network
 samba_server_string: Ansible NAS
 
 # Shares you want published over Samba.
 samba_shares:
-  - name: downloads
+  - name: Downloads
     comment: "Stuff downloaded"
     guest_ok: yes
     public: yes
@@ -89,7 +244,7 @@ samba_shares:
     browseable: yes
     path: "{{ downloads_root }}"
 
-  - name: movies
+  - name: Movies
     comment: "Movies"
     guest_ok: yes
     public: yes
@@ -97,7 +252,7 @@ samba_shares:
     browseable: yes
     path: "{{ movies_root }}"
 
-  - name: tv
+  - name: TV
     comment: "TV Episodes"
     guest_ok: yes
     public: yes
@@ -105,7 +260,7 @@ samba_shares:
     browseable: yes
     path: "{{ tv_root }}"
 
-  - name: music
+  - name: Music
     comment: "Music"
     guest_ok: yes
     public: yes
@@ -113,7 +268,7 @@ samba_shares:
     browseable: yes
     path: "{{ music_root }}"
 
-  - name: podcasts
+  - name: Podcasts
     comment: "Podcasts"
     guest_ok: yes
     public: yes
@@ -129,7 +284,7 @@ samba_shares:
     browseable: yes
     path: "{{ samba_shares_root }}/dump"
 
-  - name: games
+  - name: Games
     comment: "Games"
     guest_ok: yes
     public: yes
@@ -137,7 +292,7 @@ samba_shares:
     browseable: yes
     path: "{{ samba_shares_root }}/games"
 
-  - name: photos
+  - name: Photos
     comment: "Pictures"
     guest_ok: yes
     public: yes
@@ -145,7 +300,7 @@ samba_shares:
     browseable: yes
     path: "{{ photos_root }}"
 
-  - name: books
+  - name: Books
     comment: "Books"
     guest_ok: yes
     public: yes
@@ -153,7 +308,7 @@ samba_shares:
     browseable: yes
     path: "{{ books_root }}"
 
-  - name: audiobooks
+  - name: Audiobooks
     comment: "Audiobooks"
     guest_ok: yes
     public: yes
@@ -161,7 +316,7 @@ samba_shares:
     browsable: yes
     path: "{{ audiobooks_root }}"
 
-  - name: comics
+  - name: Comics
     comment: "Comics"
     guest_ok: yes
     public: yes
@@ -169,7 +324,7 @@ samba_shares:
     browseable: yes
     path: "{{ comics_root }}"
 
-  - name: documents
+  - name: Documents
     comment: "Documents"
     guest_ok: yes
     public: yes
@@ -177,7 +332,7 @@ samba_shares:
     browseable: yes
     path: "{{ documents_root }}"
 
-  - name: code
+  - name: Code
     comment: "Code"
     guest_ok: yes
     public: yes
@@ -192,7 +347,7 @@ samba_shares:
 # https://help.ubuntu.com/community/SettingUpNFSHowTo#Shares
 # WARNING: Weird things might happen if you share the same data over Samba and NFS and allow writes on both!
 
-nfs_shares_root: /mnt/local/media
+nfs_shares_root: /mnt/local/Media
 
 nfs_exports:
   - "{{ nfs_shares_root }}/public *(rw,sync,no_root_squash)"
