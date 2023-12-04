@@ -22,9 +22,27 @@
   ansible.builtin.apt:
     upgrade: yes
     state: latest
+  register: upgrade
+  retries: 15
+  delay: 5
+  until: upgrade is success
   when: keep_packages_updated
   tags:
     - skip_ansible_lint
+
+- name: Disable password authentication for root
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin prohibit-password'
+
+- name: Disable tunneled clear-text passwords
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^PasswordAuthentication yes'
+    line: 'PasswordAuthentication no'
 
 - name: Install some packages
   ansible.builtin.apt:
@@ -32,6 +50,42 @@
     state: present
   register: result
   until: result is succeeded
+
+
+- name: configure fail2ban for ssh
+  ansible.builtin.copy:
+    dest: /etc/fail2ban/jail.local
+    content: "{{ f2b_jail_local }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart fail2ban
+
+- name: enable fail2ban service on boot
+  ansible.builtin.service:
+    name: fail2ban
+    enabled: true
+    state: started
+
+# simple shell script to display fail2ban-client status info; usage:
+
+#   f2bst
+
+#   f2bst sshd
+
+- name: Configure f2bst
+  ansible.nuiltin.copy:
+    dest: /usr/local/bin/f2bst
+    content: |
+
+      #!/bin/sh
+
+      fail2ban-client status $*
+
+    owner: root
+    group: root
+    mode: 0750
 
 - name: Make sure that the neofetch config folder is created
   ansible.builtin.file:

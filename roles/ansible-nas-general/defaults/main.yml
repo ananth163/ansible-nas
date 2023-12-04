@@ -3,7 +3,7 @@
 ansible_nas_hostname: ansible-nas
 
 # Update all apt packages when playbook is run
-keep_packages_updated: false
+keep_packages_updated: true
 
 # Extra packages to install
 ansible_nas_extra_packages:
@@ -29,6 +29,26 @@ ansible_nas_extra_packages:
   - lm-sensors
   - smartmontools
   - cockpit
+
+# Configure fail2ban
+f2b_jail_local: |
+
+      [DEFAULT]
+
+      findtime = 15m
+
+      bantime = 2h
+
+      maxretry = 5
+
+
+
+      [sshd]
+
+      enabled = true
+
+      maxretry = 3
+
 
 # Sets the timezone for your Ansible NAS
 # You can find a list here https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
