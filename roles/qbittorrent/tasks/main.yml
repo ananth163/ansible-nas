@@ -38,7 +38,7 @@
           traefik.http.routers.qbittorrent.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.qbittorrent.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.qbittorrent.loadbalancer.server.port: "8080"
-      when: qbittorent_available_externally is true
+      when: qbittorrent_available_externally is true
 
     - name: Qbittorrent Docker Container
       community.docker.docker_container:
@@ -60,7 +60,7 @@
           WEBUI_PORT: "{{ qbittorrent_webui_port }}"
         restart_policy: unless-stopped
         memory: "{{ qbittorrent_memory }}"        
-      when: qbittorent_available_externally is false
+      when: qbittorrent_available_externally is false
 
   when: qbittorrent_enabled is true
 
