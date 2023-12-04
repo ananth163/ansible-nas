@@ -91,15 +91,14 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/neofetch"
     state: directory
-    owner: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
     mode: "0755"
 
 - name: Deploy the neofetch configuration file in place
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/config.conf"
+  ansible.builtin.copy:
+    src: config.conf
     dest: "{{ ansible_env.HOME }}/.config/neofetch/config.conf"
-    state: link
-
+  
 - name: Install LazyDocker
   ansible.builtin.shell:
     cmd: curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
