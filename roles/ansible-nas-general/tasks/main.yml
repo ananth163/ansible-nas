@@ -75,7 +75,7 @@
 #   f2bst sshd
 
 - name: Configure f2bst
-  ansible.nuiltin.copy:
+  ansible.builtin.copy:
     dest: /usr/local/bin/f2bst
     content: |
 
@@ -91,7 +91,7 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/neofetch"
     state: directory
-    owner: "{{ username }}"
+    owner: "{{ ansible_user }}"
     mode: "0755"
 
 - name: Deploy the neofetch configuration file in place

@@ -378,7 +378,7 @@ airsonic_port: "4040"
 bazarr_port: "6767"
 booksonic_port: "4041"
 calibre_port: "8084"
-        calibre_port: "8085" # 8084 is used by github actions
+# calibre_port: "8085" # 8084 is used by github actions
 cloudcmd_port: "7373"
 code_server_port: "8443"
 couchpotato_port: "5050"
@@ -410,8 +410,8 @@ miniflux_port: "8070"
 minio_api_port: "9000"
 minio_console_port: "9009"
 # mumble
-  mumble_tcp_port: "64738"
-  mumble_udp_port: "64738"
+mumble_tcp_port: "64738"
+mumble_udp_port: "64738"
 n8n_port: 5678
 navidrome_port: "4533"
 netdata_port: "19999"
@@ -424,8 +424,8 @@ paperless_ng_port: "16922"
 piwigo_port: "16923"
 portainer_port: "9000"
 promtail_port: "9080"
-  http_listen_port: 9080
-  grpc_listen_port: 0
+http_listen_port: 9080
+grpc_listen_port: 0
 prowlarr_port: "9696"
 pyload_port: "8000"
 qbittorrent_external_port: "6881"
@@ -437,22 +437,22 @@ sickchill_port: "8081"
 sonarr_port: "8989"
 speedtest_tracker_port: "8765"
 # Stats
-  stats_grafana_port: "3000"
-  stats_prometheus_port: "9090"
-  stats_prometheus_smartctl_port: "9902"
-  stats_speedtest_exporter_port: "9798"
-  stats_telegraf_influxdb_port: "8086"
-  stats_telegraf_port: "9273"
+stats_grafana_port: "3000"
+stats_prometheus_port: "9090"
+stats_prometheus_smartctl_port: "9902"
+stats_speedtest_exporter_port: "9798"
+stats_telegraf_influxdb_port: "8086"
+stats_telegraf_port: "9273"
 syncthing_port: 8384
 tautulli_port: "8185"
 tiddlywiki_port: 8092
 timemachine_port: "10445"
 # Transmission
-  transmission_external_port: "51414"
-  transmission_openvpn_external_port: "51415"
-  transmission_openvpn_proxy_port: "3128"
-  transmission_openvpn_webui_port: "9091"
-  transmission_webui_port: "9092"
+transmission_external_port: "51414"
+transmission_openvpn_external_port: "51415"
+transmission_openvpn_proxy_port: "3128"
+transmission_openvpn_webui_port: "9091"
+transmission_webui_port: "9092"
 unmanic_port: "8888"
 virtual_desktop_rdp_port: 3389
 wallabag_port: "7780"

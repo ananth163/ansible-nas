@@ -33,7 +33,7 @@
           traefik.http.services.dockge.loadbalancer.server.port: "9443"
           traefik.http.routers.dockge.middlewares: "dockge-ipwhitelist@docker"
           traefik.http.middlewares.dockge-ipwhitelist.ipwhitelist.sourcerange: "{{ dockge_ip_whitelist }}"
-    when: dockge_available_externally is true
+      when: dockge_available_externally is true
     
     - name: Dockge Docker Container
       community.docker.docker_container:
@@ -51,7 +51,7 @@
           - "{{ dockge_port }}:5001"
         restart_policy: unless-stopped
         memory: "{{ dockge_memory }}"
-    when: dockge_available_externally is false
+      when: dockge_available_externally is false
 
   when: dockge_enabled is true
 

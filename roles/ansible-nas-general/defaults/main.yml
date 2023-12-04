@@ -14,7 +14,7 @@ ansible_nas_extra_packages:
   - lsof
   - rsync
   - iotop
-  - neoftech
+  - neofetch
   - lolcat
   - fzf
   - zoxide
