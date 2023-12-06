@@ -1,49 +1,4 @@
 ---
-- name: Add Ubuntu repositories
-  apt_repository:
-    repo: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
-    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
-    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
-    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
-  when: ansible_distribution == 'Ubuntu'
-
-- name: Update apt-cache
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-  register: result
-  until: result is succeeded
-
-- name: Upgrade all packages # noqa package-latest
-  ansible.builtin.apt:
-    upgrade: yes
-    state: latest
-  register: upgrade
-  retries: 15
-  delay: 5
-  until: upgrade is success
-  when: keep_packages_updated
-  tags:
-    - skip_ansible_lint
-
-- name: Disable password authentication for root
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    state: present
-    regexp: '^#?PermitRootLogin'
-    line: 'PermitRootLogin prohibit-password'
-
-- name: Disable tunneled clear-text passwords
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    state: present
-    regexp: '^PasswordAuthentication yes'
-    line: 'PasswordAuthentication no'
-
 - name: Install some packages
   ansible.builtin.apt:
     name: "{{ ansible_nas_extra_packages }}"
@@ -106,14 +61,6 @@
     creates: /usr/local/bin/lazydocker
   environment:
     DIR: /usr/local/bin
-
-- name: "Set hostname to {{ ansible_nas_hostname }}"
-  ansible.builtin.hostname:
-    name: "{{ ansible_nas_hostname }}"
-
-- name: "Set timezone to {{ ansible_nas_timezone }}"
-  community.general.timezone:
-    name: "{{ ansible_nas_timezone }}"
 
 - name: "Permission share directories"
   ansible.builtin.file:

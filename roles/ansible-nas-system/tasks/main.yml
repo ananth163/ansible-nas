@@ -1,0 +1,80 @@
+---
+- name: Add Ubuntu repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates multiverse'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Configure custom APT Deb822 repositories
+  ansible.builtin.deb822_repository:
+    uris:              '{{ item.uris }}'
+    name:              '{{ item.name }}'
+    allow_downgrade_to_insecure: '{{ item.allow_downgrade_to_insecure | d(omit) }}'
+    allow_insecure:    '{{ item.allow_insecure | d(omit) }}'
+    allow_weak:        '{{ item.allow_weak | d(omit) }}'
+    architectures:     '{{ item.architectures | d(omit) }}'
+    by_hash:           '{{ item.by_hash | d(omit) }}'
+    check_date:        '{{ item.check_date | d(omit) }}'
+    check_valid_until: '{{ item.check_valid_until | d(omit) }}'
+    components:        '{{ item.components | d(omit) }}'
+    data_max_future:   '{{ item.date_max_future | d(omit) }}'
+    enabled:           '{{ item.enabled | d(omit) }}'
+    inrelease_path:    '{{ item.inrelease_path | d(omit) }}'
+    languages:         '{{ item.languages | d(omit) }}'
+    mode:              '{{ item.mode | d(omit) }}'
+    pdiffs:            '{{ item.pdiffs | d(omit) }}'
+    signed_by:         '{{ item.signed_by | d(omit) }}'
+    state:             '{{ item.state | d("present") }}'
+    suites:            '{{ item.suites | d(omit) }}'
+    targets:           '{{ item.targets | d(omit) }}'
+    trusted:           '{{ item.trusted | d(omit) }}'
+    types:             '{{ item.types | d("deb") }}'
+  loop: '{{ apt__repositories }}'
+
+- name: Update apt-cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  register: result
+  until: result is succeeded
+
+- name: Upgrade all packages # noqa package-latest
+  ansible.builtin.apt:
+    upgrade: yes
+    state: latest
+  register: upgrade
+  retries: 15
+  delay: 5
+  until: upgrade is success
+  when: keep_packages_updated
+  tags:
+    - skip_ansible_lint
+
+- name: Disable password authentication for root
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin prohibit-password'
+
+- name: Disable tunneled clear-text passwords
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^PasswordAuthentication yes'
+    line: 'PasswordAuthentication no'
+
+- name: "Set hostname to {{ ansible_nas_hostname }}"
+  ansible.builtin.hostname:
+    name: "{{ ansible_nas_hostname }}"
+
+- name: "Set timezone to {{ ansible_nas_timezone }}"
+  community.general.timezone:
+    name: "{{ ansible_nas_timezone }}"
+

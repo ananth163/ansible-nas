@@ -6,6 +6,11 @@
     ###
     ### Requirements
     ###
+    - role: ansible-nas-system
+      tags:
+        - ansible-nas-system
+        - ansible-nas
+
     - role: ansible-nas-users
       tags:
         - ansible-nas-users
@@ -36,9 +41,9 @@
     ###
     ### Ansible-NAS Roles
     ###
-    - role: ansible-nas-general
+    - role: ansible-nas-common
       tags:
-        - ansible-nas-general
+        - ansible-nas-common
         - ansible-nas
 
     - role: ansible-nas-docker
@@ -453,4 +458,3 @@
     - role: geerlingguy.firewall
       tags:
         - firewall
-        - skip_ansible_lint
