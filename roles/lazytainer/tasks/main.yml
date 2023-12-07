@@ -1,0 +1,34 @@
+---
+- name: Start lazytainer
+  block:
+    - name: Lazytainer Docker Container
+      community.docker.docker_container:
+        name: "{{ lazytainer_container_name }}"
+        image: "{{ lazytainer_image_name }}:{{ lazytainer_image_version }}"
+        pull: true
+        volumes:
+          - "/var/run/docker.sock:/var/run/docker.sock:ro"
+        ports: >
+              [
+              {{
+                'jellyfin__ports' 
+                 if lazytainer_jellyfin_enabled is true else [] 
+              }} 
+              ]        
+        env:
+          VERBOSE: true
+        memory: "{{ lazytainer_memory }}"
+        labels:
+          lazytainer.group.jellyfin.ports: "{{ jellyfin_port_http }},{{ jellyfin_port_https }}"
+          lazytainer.group.jellyfin.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+          lazytainer.group.jellyfin.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+          lazytainer.group.jellyfin.pollRate: "{{ lazytainer_pollRate }}"
+  when: lazytainer_enabled is true
+
+- name: Stop lazytainer
+  block:
+    - name: Stop lazytainer
+      community.docker.docker_container:
+        name: "{{ lazytainer_container_name }}"
+        state: absent
+  when: lazytainer_enabled is false

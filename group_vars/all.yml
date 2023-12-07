@@ -290,7 +290,7 @@ samba_shares:
     public: yes
     writable: yes
     browseable: yes
-    path: "{{ samba_shares_root }}/games"
+    path: "{{ samba_shares_root }}/Games"
 
   - name: Photos
     comment: "Pictures"

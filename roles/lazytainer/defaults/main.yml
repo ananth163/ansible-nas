@@ -1,0 +1,36 @@
+---
+lazytainer_enabled: false
+
+# docker
+lazytainer_container_name: "lazytainer"
+lazytainer_image_name: "ghcr.io/vmorganp/lazytainer"
+lazytainer_image_version: "master"
+
+# config
+lazytainer_inactiveTimeout: 120
+lazytainer_minPacketThreshold: 100
+lazytainer_pollRate: 1
+
+# specs
+lazytainer_memory: "1g"
+
+###########################################################################
+###########################################################################
+
+##
+### Jellyfin
+##
+
+lazytainer_jellyfin_enabled: false
+
+# network
+jellyfin_port_http: "8896"
+jellyfin_port_https: "8928"
+
+jellyfin__ports:
+   - "{{ jellyfin_port_http }}:8096"
+   - "{{ jellyfin_port_https }}:8920"
+
+
+###########################################################################
+###########################################################################

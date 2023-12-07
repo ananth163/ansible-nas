@@ -59,6 +59,10 @@
       tags:
         - logging
 
+    - role: lazytainer
+      tags:
+        - lazytainer
+
 
     ###
     ### Applications
