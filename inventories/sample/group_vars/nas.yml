@@ -212,6 +212,7 @@ lazytainer_enabled: true
 jellyfin_enabled: true
 
 ## Applications controlled by Lazytainer
+lazytainer_jackett_enabled: true
 lazytainer_jellyfin_enabled: true
 
 
@@ -226,6 +227,7 @@ firewall_allowed_tcp_ports:
   - "22"
   - "80"
   - "9090" # Cockpit
+  - "9117" # Jackett
   - "8896" # Jellyfin HTTP
   - "8928" # Jellyfin HTTPS
 firewall_allowed_udp_ports: []

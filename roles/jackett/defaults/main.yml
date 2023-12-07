@@ -10,6 +10,8 @@ jackett_torrents_root: "{{ torrents_root }}"
 # network
 jackett_hostname: "jackett"
 jackett_port: "9117"
+jackett__ports:
+  - "{{ jackett_port }}:9117"
 
 # docker
 jackett_container_name: "jackett"

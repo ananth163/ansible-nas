@@ -10,19 +10,31 @@
           - "/var/run/docker.sock:/var/run/docker.sock:ro"
         ports: >
               [
-              {{
-                'jellyfin__ports' 
-                 if lazytainer_jellyfin_enabled is true else [] 
-              }} 
-              ]        
+              {{                
+                jackett__ports 
+                if lazytainer_jackett_enabled is true else '' 
+              }},
+              {{                
+                jellyfin__port_http 
+                if lazytainer_jellyfin_enabled is true else ''
+              }},
+              {{                
+                jellyfin__port_https 
+                if lazytainer_jellyfin_enabled is true else '' 
+              }}
+              ]       
         env:
-          VERBOSE: true
+          VERBOSE: "true"
         memory: "{{ lazytainer_memory }}"
         labels:
-          lazytainer.group.jellyfin.ports: "{{ jellyfin_port_http }},{{ jellyfin_port_https }}"
+          lazytainer.group.jackett.ports: "9117"
+          lazytainer.group.jackett.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+          lazytainer.group.jackett.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+          lazytainer.group.jackett.pollRate: "{{ lazytainer_pollRate }}"
+          lazytainer.group.jellyfin.ports: "8096,8920"
           lazytainer.group.jellyfin.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
           lazytainer.group.jellyfin.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
-          lazytainer.group.jellyfin.pollRate: "{{ lazytainer_pollRate }}"
+          lazytainer.group.jellyfin.pollRate: "{{ lazytainer_pollRate }}"          
   when: lazytainer_enabled is true
 
 - name: Stop lazytainer

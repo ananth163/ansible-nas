@@ -21,21 +21,16 @@
           - "{{ jellyfin_tv_directory }}:/tv:{{ jellyfin_tv_permissions }}"
           - "{{ jellyfin_books_directory }}:/books:{{ jellyfin_books_permissions }}"
           - "{{ jellyfin_audiobooks_directory }}:/audiobooks:{{ jellyfin_audiobooks_permissions }}"
-        #ports: "{{ jellyfin__ports | d(omit) }}" 
         ports: >
               {{
-                'jellyfin__ports' 
-                 if lazytainer_jellyfin_enabled is false else omit 
+                jellyfin__ports 
+                if lazytainer_jellyfin_enabled is false else [] 
               }}         
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ jellyfin_user_id }}"
           PGID: "{{ jellyfin_group_id }}"
-        network_mode: >
-                      {{
-                      "container:{{lazytainer_container_name}}"
-                      if lazytainer_jellyfin_enabled is true else omit 
-                      }} 
+        network_mode: '{{ lazytainer_container if lazytainer_jellyfin_enabled is true else omit }}' 
         restart_policy: unless-stopped
         memory: "{{ jellyfin_memory }}"
         labels:

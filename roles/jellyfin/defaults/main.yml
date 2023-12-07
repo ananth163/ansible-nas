@@ -31,7 +31,6 @@ jellyfin_port_https: "8928"
 jellyfin__ports:
    - "{{ jellyfin_port_http }}:8096"
    - "{{ jellyfin_port_https }}:8920"
-#jellyfin__ports: "{{ [ '{{ jellyfin_port_http }}:8096' , '{{ jellyfin_port_https }}:8920' ] if ( lazytainer_jellyfin_enabled is false ) else [] }}"
 
 # docker
 jellyfin_container_name: "jellyfin"
