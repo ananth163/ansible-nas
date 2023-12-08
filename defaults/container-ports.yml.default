@@ -6,267 +6,267 @@
 ###
 
 ######airsonic
-airsonic_container_port: "4040"
+container_airsonic_port: "4040"
 
 ######bazarr
-bazarr_container_port: "6767"
+container_bazarr_port: "6767"
 
 ######bitwarden 
-bitwarden_container_port_a: "80"
-bitwarden_container_port_b: "3012"
+container_bitwarden_port_a: "80"
+container_bitwarden_port_b: "3012"
 
 ######booksonic
-booksonic_container_port: "4040"
+container_booksonic_port: "4040"
 
 ######calibre 
-calibre_container_port: "8083"
+container_calibre_port: "8083"
 
 ######cloudcmd 
-cloudcmd_container_port: "8000"
+container_cloudcmd_port: "8000"
 
 ######code-server 
-code_server_container_port: "8443"
+container_code_server_port: "8443"
 
 ######couchpotato 
-couchpotato_container_port: "5050"
+container_couchpotato_port: "5050"
 
 ######dashy  
-dashy_container_port: "80"
+container_dashy_port: "80"
 
 ######ddns_updater
-ddns_updater_container_port: "8000"
+container_ddns_updater_port: "8000"
 
 ######deluge  
-deluge_container_port: "8112"
+container_deluge_port: "8112"
 
 ######dockge 
-dockge_container_port: "5001"
+container_dockge_port: "5001"
 
 ######dokuwiki
-dokuwiki_container_port: "80"
+container_dokuwiki_port: "80"
 
 ######drone-ci 
-drone_ci_container_port_http: "80"
-drone_ci_runner_container_port_http: "3000"
+container_drone_ci_port_http: "80"
+container_drone_ci_runner_port_http: "3000"
 
 ######duplicacy
-duplicacy_container_port: "3875"
+container_duplicacy_port: "3875"
 
 ######duplicati 
-duplicati_container_port: "8200"
+container_duplicati_port: "8200"
 
 ######emby  
-emby_container_port_http: "8096"
-emby_container_port_https: "8920"
+container_emby_port_http: "8096"
+container_emby_port_https: "8920"
 
 ######esphome
-esphome_container_port: "6052"
+container_esphome_port: "6052"
 
 ######firefly 
-firefly_container_port: "8080"
+container_firefly_port: "8080"
 
 ######freshrss 
-freshrss_container_port: "80"
+container_freshrss_port: "80"
 
 ######get_iplayer 
-get_iplayer_container_port: "8181"
+container_get_iplayer_port: "8181"
 
 ######gitea 
-gitea_container_port_http: "3000"
-gitea_container_port_ssh: "22"
+container_gitea_port_http: "3000"
+container_gitea_port_ssh: "22"
 
 ######gitlab
-gitlab_container_port_http: "80"
-gitlab_container_port_https: "443"
-gitlab_container_port_ssh: "22"
+container_gitlab_port_http: "80"
+container_gitlab_port_https: "443"
+container_gitlab_port_ssh: "22"
 
 ######glances
-glances_container_port_one: "61208"
-glances_container_port_two: "61209"
+container_glances_port_one: "61208"
+container_glances_port_two: "61209"
 
 ######gotify
-gotify_container_port: "80"
+container_gotify_port: "80"
 
 ######guacamole
-guacamole_container_port: "8080"
+container_guacamole_port: "8080"
 
 ######heimdall
-heimdall_container_port_http: "80"
-heimdall_container_port_https: "443"
+container_heimdall_port_http: "80"
+container_heimdall_port_https: "443"
 
 ######hello_world
-hello_world_container_port: "8000"
+container_hello_world_port: "8000"
 
 ######jackett
-jackett_container_port: "9117" 
+container_jackett_port: "9117" 
 
 ######jellyfin
-jellyfin_container_port_http: "8096"
-jellyfin_container_port_https: "8920" 
+container_jellyfin_port_http: "8096"
+container_jellyfin_port_https: "8920" 
 
 ######joomla
-joomla_container_port: "80"
+container_joomla_port: "80"
 
 ######komga
-komga_container_port_http: "25600"
+container_komga_port_http: "25600"
 
 ######krusader
-krusader_container_port_http: "6080"
-krusader_container_port_vnc: "5900"
+container_krusader_port_http: "6080"
+container_krusader_port_vnc: "5900"
 
 ######lidarr
-lidarr_container_port: "8686"
+container_lidarr_port: "8686"
 
 ######loki
-loki_http_container_port: "3100"
+container_loki_http_port: "3100"
 
 ######mealie
-mealie_container_port: "80"
+container_mealie_port: "80"
 
 ######minecraft-bedrock-server
-minecraft_bedrock_server_container_port: "19132/udp"
+container_minecraft_bedrock_server_port: "19132/udp"
 
 ######minecraft-server
-minecraft_server_container_port: "25565"
+container_minecraft_server_port: "25565"
 
 ######miniflux
-miniflux_container_port: "8080"
+container_miniflux_port: "8080"
 
 ######minio 
-minio_api_container_port: "9000"
-minio_console_container_port: "9009"
+container_minio_api_port: "9000"
+container_minio_console_port: "9009"
 
 ######mosquitto 
-mosquitto_container_port_a: "1883"
-mosquitto_container_port_b: "9001"
+container_mosquitto_port_a: "1883"
+container_mosquitto_port_b: "9001"
 
 ######mumble
-mumble_tcp_container_port: "64738/tcp"
-mumble_udp_container_port: "64738/udp"
+container_mumble_tcp_port: "64738/tcp"
+container_mumble_udp_port: "64738/udp"
 
 ######mylar
-mylar_container_port_http: "8090"
+container_mylar_port_http: "8090"
 
 ######n8n 
-n8n_container_port: "5678"
+container_n8n_port: "5678"
 
 ######navidrome
-navidrome_container_port: "4533"
+container_navidrome_port: "4533"
 
 ######netbootxyz
-netbootxyz_container_port_http2: "80"
-netbootxyz_container_port_http: "3000"
-netbootxyz_container_port_tftp: "69/udp"
+container_netbootxyz_port_http2: "80"
+container_netbootxyz_port_http: "3000"
+container_netbootxyz_port_tftp: "69/udp"
 
 ######netdata
-netdata_container_port: "19999"
+container_netdata_port: "19999"
 
 ######nextcloud
-nextcloud_container_port: "80"
+container_nextcloud_port: "80"
 
 ######nzbget
-nzbget_container_port: "6789"
+container_nzbget_port: "6789"
 
 ######octoprint
-octoprint_container_port: "80"
+container_octoprint_port: "80"
 
 ######ombi
-ombi_container_port: "3579"
+container_ombi_port: "3579"
 
 ######organizr
-organizr_container_port_http: "80"
-organizr_container_port_https: "443"
+container_organizr_port_http: "80"
+container_organizr_port_https: "443"
 
 ######overseerr
-overseerr_webui_container_port: "5055"
+container_overseerr_webui_port: "5055"
 
 ######paperless_ng 
-paperless_ng_container_port: "8000"
+container_paperless_ng_port: "8000"
 
 ######piwigo 
-piwigo_container_port: "80"
+container_piwigo_port: "80"
 
 ######portainer
-portainer_container_port: "9443"
+container_portainer_port: "9443"
 
 ######promtail
-promtail_container_port: "9080"
+container_promtail_port: "9080"
 
 ######prowlarr 
-prowlarr_container_port: "9696"
+container_prowlarr_port: "9696"
 
 ######pyload
-pyload_container_port: "8000"
+container_pyload_port: "8000"
 
 ######qbittorrent
-qbittorrent_external_container_port: "6881"
-qbittorrent_external_container_port_udp: "6881/udp"
-qbittorrent_webui_container_port: "8080"
+container_qbittorrent_external_port: "6881"
+container_qbittorrent_external_port_udp: "6881/udp"
+container_qbittorrent_webui_port: "8080"
 
 ######radarr
-radarr_container_port: "7878"
+container_radarr_port: "7878"
 
 ######rssbridge
-rssbridge_container_port: "80"
+container_rssbridge_port: "80"
 
 ######sabnzbd
-sabnzbd_container_port: "8080"
+container_sabnzbd_port: "8080"
 
 ######sickchill
-sickchill_container_port: "8081"
+container_sickchill_port: "8081"
 
 ######sonarr
-sonarr_container_port: "8989"
+container_sonarr_port: "8989"
 
 ######speedtest-tracker
-speedtest_tracker_container_port: "80"
+container_speedtest_tracker_port: "80"
 
 ######syncthing
-syncthing_container_port: "8384"
+container_syncthing_port: "8384"
 
 ######tautulli
-tautulli_container_port: "8181"
+container_tautulli_port: "8181"
 
 ######thelounge
-thelounge_container_port_one: "9001"
-thelounge_container_port_two: "9000"
+container_thelounge_port_one: "9001"
+container_thelounge_port_two: "9000"
 
 ######tiddlywiki
-tiddlywiki_container_port: "8080"
+container_tiddlywiki_port: "8080"
 
 ######timemachine 
-timemachine_container_port: "445"
+container_timemachine_port: "445"
 
 ######transmission
-transmission_external_container_port: "51413"
-transmission_external_container_port_udp: "51413/udp"
-transmission_openvpn_proxy_container_port: "3128"
-transmission_openvpn_webui_container_port: "9091"
+container_transmission_external_port: "51413"
+container_transmission_external_port_udp: "51413/udp"
+container_transmission_openvpn_proxy_port: "3128"
+container_transmission_openvpn_webui_port: "9091"
 
 ######ubooquity
-ubooquity_container_port_admin: "2203"
-ubooquity_container_port_webui: "2202"
+container_ubooquity_port_admin: "2203"
+container_ubooquity_port_webui: "2202"
 
 ######unmanic
-unmanic_container_port: "8888"
+container_unmanic_port: "8888"
 
 ######utorrent
-utorrent_container_port_bt: "6881"
-utorrent_container_port_bt_udp: "6881/udp"
-utorrent_container_port_http: "8080"
+container_utorrent_port_bt: "6881"
+container_utorrent_port_bt_udp: "6881/udp"
+container_utorrent_port_http: "8080"
 
 ######virtual_desktop
-virtual_desktop_rdp_container_port: "3389"
+container_virtual_desktop_rdp_port: "3389"
 
 ######wallabag
-wallabag_container_port: "80"
+container_wallabag_port: "80"
 
 ######woodpecker-ci
-woodpecker_ci_container_port_grpc: "9000"
-woodpecker_ci_container_port_ui: "8000"
+container_woodpecker_ci_port_grpc: "9000"
+container_woodpecker_ci_port_ui: "8000"
 
 ######youtubedlmaterial
-youtubedlmaterial_container_port_http: "17442"
+container_youtubedlmaterial_port_http: "17442"
 
 ######znc
-znc_container_port: "6677"
+container_znc_port: "6677"

@@ -8,8 +8,6 @@ bazarr_port: "6767"
 
 ######  Bitwarden
 bitwarden_port_a: "19080"
-
-######  Bitwarden
 bitwarden_port_b: "3012"
 
 ######  Booksonic
@@ -216,6 +214,7 @@ pyload_port: "8000"
 ######  qbittorrent
 qbittorrent_external_port: "6881"
 qbittorrent_webui_port: "8080"
+qbittorrent_external_port_udp: "6881"
 
 ######  radarr
 radarr_port: "7878"
@@ -266,6 +265,7 @@ traefik_port_ui: "8083"
 
 ######  transmission
 transmission_external_port: "51414"
+transmission_external_port_udp: "51414"
 transmission_webui_port: "9092"
 
 ######  transmission-with-openvpn
@@ -282,6 +282,7 @@ unmanic_port: "8888"
 
 ######  utorrent
 utorrent_port_bt: "6881"
+utorrent_port_bt_udp: "6881"
 utorrent_port_http: "8111"
 
 ######  virtual_desktop
