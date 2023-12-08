@@ -210,6 +210,7 @@ samba_netbios_name: "{{ ansible_nas_hostname }}"
 portainer_enabled: false
 lazytainer_enabled: true
 jellyfin_enabled: true
+jackett_enabled: true
 
 ## Applications controlled by Lazytainer
 lazytainer_jackett_enabled: true

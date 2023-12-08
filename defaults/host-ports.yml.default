@@ -1,0 +1,301 @@
+---
+
+######  Airsonic
+airsonic_port: "4040"
+
+######  Bazarr
+bazarr_port: "6767"
+
+######  Bitwarden
+bitwarden_port_a: "19080"
+
+######  Bitwarden
+bitwarden_port_b: "3012"
+
+######  Booksonic
+booksonic_port: "4041"
+
+######  Calibre
+calibre_port: "8084"
+
+######  Cloudcmd
+cloudcmd_port: "7373"
+
+######  Code-server
+code_server_port: "8443"
+
+######  Couchpotato
+couchpotato_port: "5050"
+
+######  Dashy
+dashy_port: "8082"
+
+######  Ddns_updater
+ddns_updater_port: 8202
+
+######  Deluge
+deluge_port: "8112"
+
+######  Dockge
+dockge_port: "5001"
+
+######  Dokuwiki
+dokuwiki_port: "8085"
+
+######  Drone-ci
+drone_ci_port_http: 8001
+drone_ci_runner_port_http: 8002
+
+######  Duplicacy
+duplicacy_port: "3875"
+
+######  Duplicati
+duplicati_port: "8200"
+
+######  Emby
+emby_port_http: "8096"
+emby_port_https: "8920"
+
+######  Esphome
+esphome_port: "6052"
+
+######  Firefly
+firefly_port: "8066"
+
+######  Freshrss
+freshrss_port: "8089"
+
+######  get_iplayer
+get_iplayer_port: "8182"
+
+######  gitea
+gitea_port_http: "3001"
+gitea_port_ssh: "222"
+
+######  gitlab
+gitlab_port_http: "4080"
+gitlab_port_https: "4443"
+gitlab_port_ssh: "422"
+
+######  glances
+glances_port_one: "61208"
+glances_port_two: "61209"
+
+######  gotify
+gotify_port: "2346"
+
+######  guacamole
+guacamole_port: "8090"
+
+######  heimdall
+heimdall_port_http: "10080"
+heimdall_port_https: "10443"
+
+######  hello_world
+hello_world_port: "9999"
+
+######  homeassistant
+homeassistant_port: "8123"
+
+######  homebridge
+homebridge_port: "8087"
+
+######  jackett
+jackett_port: "9117"
+
+######  jellyfin
+jellyfin_port_http: "8896"
+jellyfin_port_https: "8928"
+
+######  joomla
+joomla_port: "8181"
+
+######  komga
+komga_port_http: "8088"
+
+######  krusader
+krusader_port_http: "6080"
+krusader_port_vnc: "5900"
+
+######  lidarr
+lidarr_port: "8686"
+
+######  loki
+loki_http_port: "3100"
+
+######  mealie
+mealie_port: "9925"
+
+######  minecraft-bedrock-server
+minecraft_bedrock_server_port: "19132"
+
+######  minecraft-server
+minecraft_server_port: "25565"
+
+######  minidlna
+minidlna_port: "8201"
+
+######  miniflux
+miniflux_port: "8070"
+
+######  minio
+minio_api_port: "9000"
+minio_console_port: "9009"
+
+######  mosquitto
+mosquitto_port_a: "1883"
+mosquitto_port_b: "9001"
+
+######  mumble
+mumble_tcp_port: "64738"
+mumble_udp_port: "64738"
+
+######  mylar
+mylar_port_http: "8585"
+
+######  n8n
+n8n_port: 5678
+
+######  navidrome
+navidrome_port: "4533"
+
+######  netbootxyz
+netbootxyz_port_http2: "5803"
+netbootxyz_port_http: "3002"
+netbootxyz_port_tftp: "69"
+
+######  netdata
+netdata_port: "19999"
+
+######  nextcloud
+nextcloud_port: "8080"
+
+######  nomad
+nomad_port_http: 4646
+nomad_port_rpc: 4647
+nomad_port_serf: 4648
+
+######  nzbget
+nzbget_port: "6789"
+
+######  octoprint
+octoprint_port: "8095"
+
+######  ombi
+ombi_port: "3579"
+
+######  openhab
+openhab_port_http: "7777"
+openhab_port_https: "7778"
+
+######  organizr
+organizr_port_http: "10081"
+organizr_port_https: "10444"
+
+######  overseerr
+overseerr_webui_port: "5055"
+
+######  paperless_ng
+paperless_ng_port: "16922"
+
+######  piwigo
+piwigo_port: "16923"
+
+######  portainer
+portainer_port: "9000"
+
+######  promtail
+promtail_port: "9080"
+
+######  prowlarr
+prowlarr_port: "9696"
+
+######  pyload
+pyload_port: "8000"
+
+######  qbittorrent
+qbittorrent_external_port: "6881"
+qbittorrent_webui_port: "8080"
+
+######  radarr
+radarr_port: "7878"
+
+######  rssbridge
+rssbridge_port: "8091"
+
+######  Sabnzbd
+sabnzbd_port: "18080"
+
+######  Sickchill
+sickchill_port: "8081"
+
+######  Sonarr
+sonarr_port: "8989"
+
+######  Speedtest-tracker
+speedtest_tracker_port: "8765"
+
+######  Stats
+stats_grafana_port: "3000"
+stats_prometheus_port: "9090"
+stats_prometheus_smartctl_port: "9902"
+stats_speedtest_exporter_port: "9798"
+stats_telegraf_influxdb_port: "8086"
+stats_telegraf_port: "9273"
+
+######  Syncthing
+syncthing_port: 8384
+
+######  tautulli
+tautulli_port: "8185"
+
+######  thelounge
+thelounge_port_one: "113"
+thelounge_port_two: "9002"
+
+######  tiddlywiki
+tiddlywiki_port: 8092
+
+######  timemachine
+timemachine_port: "10445"
+
+######  traefik
+traefik_port_http: "80"
+traefik_port_https: "443"
+traefik_port_ui: "8083"
+
+######  transmission
+transmission_external_port: "51414"
+transmission_webui_port: "9092"
+
+######  transmission-with-openvpn
+transmission_openvpn_external_port: "51415"
+transmission_openvpn_proxy_port: "3128"
+transmission_openvpn_webui_port: "9091"
+
+######  ubooquity
+ubooquity_port_admin: "2203"
+ubooquity_port_webui: "2202"
+
+######  unmanic
+unmanic_port: "8888"
+
+######  utorrent
+utorrent_port_bt: "6881"
+utorrent_port_http: "8111"
+
+######  virtual_desktop
+virtual_desktop_rdp_port: 3389
+
+######  wallabag
+wallabag_port: "7780"
+
+######  woodpecker-ci
+woodpecker_ci_port_grpc: 9000
+woodpecker_ci_port_ui: 8000
+
+######  youtubedlmaterial
+youtubedlmaterial_port_http: "8998"
+
+######  znc
+znc_port: "6677"

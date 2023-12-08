@@ -1,6 +1,9 @@
 ---
 - name: Ansible-NAS
   hosts: all
+  vars_files:
+    - ['host-ports.yml', 'defaults/host-ports.yml.default']
+    - ['container-ports.yml', 'defaults/container-ports.yml.default']
 
   roles:
     ###
