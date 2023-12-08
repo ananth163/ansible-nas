@@ -30,8 +30,8 @@ lazytainer_jackett_enabled: false
 # network
 jackett__ports: 
   - "{{ jackett_port }}:{{ container_jackett_port }}"
-lazytainer_jackett_port: "{{ jackett__ports if ( lazytainer_jackett_enabled is true ) else [] }}"
-lazytainer_ports: "{{ lazytainer_ports + lazytainer_jackett_port }}"
+lazytainer_jackett_ports: "{{ jackett__ports if ( lazytainer_jackett_enabled is true ) else [] }}"
+#lazytainer_ports: "{{ lazytainer_ports + lazytainer_jackett_port }}"
 
 ##
 ### Jellyfin
@@ -40,14 +40,12 @@ lazytainer_ports: "{{ lazytainer_ports + lazytainer_jackett_port }}"
 lazytainer_jellyfin_enabled: false
 
 # network
-jellyfin__ports_http:
+jellyfin__ports:
   -  "{{ jellyfin_port_http }}:{{ container_jellyfin_port_http }}"
-jellyfin__ports_https:
   - "{{ jellyfin_port_https }}:{{ container_jellyfin_port_https }}"
 
-lazytainer_jellyfin_port_http: "{{ jellyfin__ports_http if ( lazytainer_jellyfin_enabled is true ) else [] }}"
-lazytainer_jellyfin_port_https: "{{ jellyfin__ports_https if ( lazytainer_jellyfin_enabled is true ) else [] }}"
-lazytainer_ports: "{{ lazytainer_ports + lazytainer_jellyfin_port_http + lazytainer_jellyfin_port_http }}"
+lazytainer_jellyfin_ports: "{{ jellyfin__ports if ( lazytainer_jellyfin_enabled is true ) else [] }}"
+#lazytainer_ports: "{{ lazytainer_ports + lazytainer_jellyfin_port }}"
 
 ###########################################################################
 ###########################################################################

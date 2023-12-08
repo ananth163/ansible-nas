@@ -1,4 +1,6 @@
 ---
+- ansible.builtin.import_tasks: portslist.yml
+
 - name: Start lazytainer
   block:
     - name: Lazytainer Docker Container
