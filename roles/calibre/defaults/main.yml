@@ -16,6 +16,8 @@ calibre_ebook_conversion: "linuxserver/calibre-web:calibre"
 # network
 calibre_port: "8084"
 calibre_hostname: "calibre"
+calibre__ports: 
+  - "{{ calibre_port }}:{{ container_calibre_port }}"
 
 # specs
 calibre_memory: 1g

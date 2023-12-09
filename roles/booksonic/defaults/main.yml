@@ -14,6 +14,8 @@ booksonic_podcasts_directory: "{{ podcasts_root }}"
 # network
 booksonic_port: "4041"
 booksonic_hostname: "booksonic"
+booksonic__ports: 
+  - "{{ booksonic_port }}:{{ container_booksonic_port }}"
 
 # specs
 booksonic_memory: 1g
