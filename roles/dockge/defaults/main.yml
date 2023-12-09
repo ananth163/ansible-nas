@@ -9,6 +9,8 @@ dockge_stacks_directory: "{{ docker_home }}/dockge/stacks"
 # network
 dockge_port: "5001"
 dockge_hostname: "dockge"
+dockge__ports: 
+  - "{{ dockge_port }}:{{ container_dockge_port }}"
 
 # docker
 dockge_container_name: "dockge"

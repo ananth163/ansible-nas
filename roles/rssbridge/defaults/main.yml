@@ -8,6 +8,8 @@ rssbridge_data_directory: "{{ docker_home }}/rssbridge"
 # network
 rssbridge_port: "8091"
 rssbridge_hostname: "rssbridge"
+rssbridge__ports: 
+  - "{{ rssbridge_port }}:{{ container_rssbridge_port }}"
 
 # docker
 rssbridge_container_name: "rssbridge"

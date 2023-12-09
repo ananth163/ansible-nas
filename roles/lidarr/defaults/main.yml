@@ -8,12 +8,14 @@ lidarr_music_directory: "{{ music_root }}"
 lidarr_downloads_directory: "{{ downloads_root }}"
 
 # uid/gid
-lidarr_user_id: "0"
-lidarr_group_id: "0"
+lidarr_user_id: "{{ uid }}"
+lidarr_group_id: "{{ gid }}"
 
 # network
 lidarr_port: "8686"
 lidarr_hostname: "lidarr"
+lidarr__ports: 
+  - "{{ lidarr_port }}:{{ container_lidarr_port }}"
 
 # docker
 lidarr_container_name: "lidarr"

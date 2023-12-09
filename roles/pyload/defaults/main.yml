@@ -7,12 +7,14 @@ pyload_config_directory: "{{ docker_home }}/pyload"
 pyload_download_directory: "{{ downloads_root }}"
 
 # uid / gid
-pyload_user_id: "0"
-pyload_group_id: "0"
+pyload_user_id: "{{ uid }}"
+pyload_group_id: "{{ gid }}"
 
 # network
 pyload_hostname: "pyload"
 pyload_port: "8000"
+pyload__ports: 
+  - "{{ pyload_port }}:{{ container_pyload_port }}"
 
 # docker
 pyload_container_name: "pyload"

@@ -13,12 +13,16 @@
         pull: true
         volumes:
           - "{{ ombi_config_directory }}:/config:rw"
-        ports:
-          - "{{ ombi_port }}:3579"
+        ports: >
+              {{
+                ombi__ports 
+                if lazytainer_ombi_enabled is false else [] 
+              }}
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ ombi_user_id }}"
           PGID: "{{ ombi_group_id }}"
+        network_mode: '{{ lazytainer_container if lazytainer_ombi_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ ombi_memory }}"
         labels:
@@ -28,6 +32,7 @@
           traefik.http.routers.ombi.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.ombi.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.ombi.loadbalancer.server.port: "3579"
+          lazytainer.group: "ombi"
   when: ombi_enabled is true
 
 - name: Stop Ombi

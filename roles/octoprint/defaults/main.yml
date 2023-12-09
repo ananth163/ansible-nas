@@ -8,6 +8,8 @@ octoprint_data_directory: "{{ docker_home }}/octoprint"
 # network
 octoprint_port: "8095"
 octoprint_hostname: "octoprint"
+octoprint__ports: 
+  - "{{ octoprint_port }}:{{ container_octoprint_port }}"
 
 # docker
 octoprint_container_name: "octoprint"

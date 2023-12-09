@@ -16,12 +16,16 @@
         volumes:
           - "{{ cloudcmd_data_directory }}:/config:rw"
           - "{{ cloudcmd_browse_directory }}:/mnt/fs"
-        ports:
-          - "{{ cloudcmd_port }}:8000"
+        ports: >
+              {{
+                cloudcmd__ports 
+                if lazytainer_cloudcmd_enabled is false else [] 
+              }}
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ cloudcmd_user_id }}"
           PGID: "{{ cloudcmd_group_id }}"
+        network_mode: '{{ lazytainer_container if lazytainer_cloudcmd_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ cloudcmd_memory }}"
         labels:
@@ -31,6 +35,7 @@
           traefik.http.routers.cloudcmd.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.cloudcmd.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.cloudcmd.loadbalancer.server.port: "8000"
+          lazytainer.group: "cloudcmd"
   when: cloudcmd_enabled is true
 
 - name: Stop Cloudcmd

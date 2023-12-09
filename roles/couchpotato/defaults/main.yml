@@ -9,11 +9,13 @@ couchpotato_downloads_directory: "{{ downloads_root }}"
 couchpotato_torrents_directory: "{{ torrents_root }}"
 
 # uid / gid
-couchpotato_user_id: "0"
-couchpotato_group_id: "0"
+couchpotato_user_id: "{{ uid }}"
+couchpotato_group_id: "{{ gid }}"
 
 # network
 couchpotato_port: "5050"
+couchpotato__ports: 
+  - "{{ couchpotato_port }}:{{ container_couchpotato_port }}"
 
 # specs
 couchpotato_memory: 1g

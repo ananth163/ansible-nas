@@ -10,13 +10,15 @@ sabnzbd_incomplete_directory: "{{ downloads_root }}/sabnzbd-incomplete"
 # network
 sabnzbd_port: "18080"
 sabnzbd_hostname: "sabnzbd"
+sabnzbd__ports: 
+  - "{{ sabnzbd_port }}:{{ container_sabnzbd_port }}"
 
 # specs
 sabnzbd_memory: 1g
 
 # uid / gid
-sabnzbd_user_id: "0"
-sabnzbd_group_id: "0"
+sabnzbd_user_id: "{{ uid }}"
+sabnzbd_group_id: "{{ gid }}"
 
 # docker
 sabnzbd_container_name: "sabnzbd"

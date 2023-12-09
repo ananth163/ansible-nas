@@ -7,12 +7,14 @@ code_server_config_directory: "{{ docker_home }}/code_server"
 code_server_projects_directory: "{{ code_root }}"
 
 # uid / gid
-code_server_user_id: "0"
-code_server_group_id: "0"
+code_server_user_id: "{{ uid }}"
+code_server_group_id: "{{ gid }}"
 
 # network
 code_server_port: "8443"
 code_server_hostname: "code-server"
+code_server__ports: 
+  - "{{ code_server_port }}:{{ container_code_server_port }}"
 
 # specs
 code_server_memory: 1g

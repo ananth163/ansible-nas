@@ -8,12 +8,14 @@ cloudcmd_data_directory: "{{ docker_home }}/cloudcmd/config"
 cloudcmd_browse_directory: "/"
 
 # uid / gid
-cloudcmd_user_id: "0"
-cloudcmd_group_id: "0"
+cloudcmd_user_id: "1000"
+cloudcmd_group_id: "1000"
 
 # network
 cloudcmd_hostname: "cloudcmd"
 cloudcmd_port: "7373"
+cloudcmd__ports: 
+  - "{{ cloudcmd_port }}:{{ container_cloudcmd_port }}"
 
 # specs
 cloudcmd_memory: "1g"

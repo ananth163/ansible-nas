@@ -5,6 +5,8 @@ n8n_enabled: false
 n8n_available_externally: false
 n8n_port: 5678
 n8n_hostname: "n8n"
+n8n__ports: 
+  - "{{ n8n_port }}:{{ container_n8n_port }}"
 
 # Directories
 n8n_data_directory: "{{ docker_home }}/n8n"

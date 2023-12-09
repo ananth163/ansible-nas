@@ -6,12 +6,14 @@ prowlarr_available_externally: false
 prowlarr_data_directory: "{{ docker_home }}/prowlarr/config"
 
 # uid / gid
-prowlarr_user_id: "0"
-prowlarr_group_id: "0"
+prowlarr_user_id: "{{ uid }}"
+prowlarr_group_id: "{{ gid }}"
 
 # network
 prowlarr_port: "9696"
 prowlarr_hostname: "prowlarr"
+prowlarr__ports: 
+  - "{{ prowlarr_port }}:{{ container_prowlarr_port }}"
 
 # docker
 prowlarr_container_name: "prowlarr"

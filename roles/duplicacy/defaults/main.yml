@@ -20,6 +20,8 @@ duplicacy_group_id: "0"
 # network
 duplicacy_port: "3875"
 duplicacy_hostname: "duplicacy"
+duplicacy__ports: 
+  - "{{ duplicacy_port }}:{{ container_duplicacy_port }}"
 
 duplicacy_memory: 1g
 

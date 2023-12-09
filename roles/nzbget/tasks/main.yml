@@ -16,12 +16,16 @@
         volumes:
           - "{{ nzbget_download_directory }}:/downloads:rw"
           - "{{ nzbget_data_directory }}:/config:rw"
-        ports:
-          - "{{ nzbget_port }}:6789"
+        ports: >
+              {{
+                nzbget__ports 
+                if lazytainer_nzbget_enabled is false else [] 
+              }}
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ nzbget_user_id }}"
           PGID: "{{ nzbget_group_id }}"
+        network_mode: '{{ lazytainer_container if lazytainer_nzbget_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ nzbget_memory }}"
         labels:
@@ -31,6 +35,7 @@
           traefik.http.routers.nzbget.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.nzbget.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.nzbget.loadbalancer.server.port: "6789"
+          lazytainer.group: "nzbget"
   when: nzbget_enabled is true
 
 - name: Stop NZBget

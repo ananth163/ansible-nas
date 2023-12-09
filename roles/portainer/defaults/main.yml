@@ -9,6 +9,8 @@ portainer_data_directory: "{{ docker_home }}/portainer/config"
 portainer_port: "9000"
 portainer_hostname: "portainer"
 portainer_ip_whitelist: "0.0.0.0/0"
+portainer__ports: 
+  - "{{ portainer_port }}:{{ container_portainer_port }}"
 
 # docker
 portainer_container_name: "portainer"

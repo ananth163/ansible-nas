@@ -18,12 +18,16 @@
           - "{{ sickchill_config_directory }}:/config:rw"
           - "{{ sickchill_downloads_directory }}:/downloads:rw"
           - "{{ sickchill_tv_directory }}:/tv:rw"
-        ports:
-          - "{{ sickchill_port }}:8081"
+        ports: >
+              {{
+                sickchill__ports 
+                if lazytainer_sickchill_enabled is false else [] 
+              }}
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ sickchill_user_id }}"
           PGID: "{{ sickchill_group_id }}"
+        network_mode: '{{ lazytainer_container if lazytainer_sickchill_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ sickchill_memory }}"
         labels:
@@ -33,6 +37,7 @@
           traefik.http.routers.sickchill.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.sickchill.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.sickchill.loadbalancer.server.port: "8081"
+          lazytainer.group: "sickchill"
   when: sickchill_enabled is true
 
 - name: Stop Sickchill

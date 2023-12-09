@@ -18,14 +18,18 @@
         volumes:
           - "{{ navidrome_data_directory }}/data:/navidrome/data:rw"
           - "{{ navidrome_music_directory }}:/navidrome/music:rw"
-        ports:
-          - "{{ navidrome_port }}:4533"
+        ports: >
+              {{
+                navidrome__ports 
+                if lazytainer_navidrome_enabled is false else [] 
+              }}
         env:
           ND_MUSICFOLDER: "/navidrome/music"
           ND_DATAFOLDER: "/navidrome/data"
           ND_SCANSCHEDULE: "{{ navidrome_scan_schedule }}"
           ND_LOGLEVEL: "{{ navidrome_log_level }}"
           ND_SESSIONTIMEOUT: "{{ navidrome_session_timeout }}"
+        network_mode: '{{ lazytainer_container if lazytainer_navidrome_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ navidrome_memory }}"
         labels:
@@ -35,6 +39,7 @@
           traefik.http.routers.navidrome.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.navidrome.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.navidrome.loadbalancer.server.port: "4533"
+          lazytainer.group: "navidrome"
   when: navidrome_enabled is true
 
 - name: Stop Navidrome

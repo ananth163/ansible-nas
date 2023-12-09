@@ -7,12 +7,14 @@ nzbget_data_directory: "{{ docker_home }}/nzbget"
 nzbget_download_directory: "{{ downloads_root }}"
 
 # uid / gid
-nzbget_user_id: "0"
-nzbget_group_id: "0"
+nzbget_user_id: "{{ uid }}"
+nzbget_group_id: "{{ gid }}"
 
 # network
 nzbget_port: "6789"
 nzbget_hostname: "nzbget"
+nzbget__ports: 
+  - "{{ nzbget_port }}:{{ container_nzbget_port }}"
 
 # docker
 nzbget_container_name: "nzbget"

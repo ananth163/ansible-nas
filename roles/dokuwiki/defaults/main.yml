@@ -12,6 +12,8 @@ dokuwiki_group_id: "1000"
 # network
 dokuwiki_hostname: "dokuwiki"
 dokuwiki_port: "8085"
+dokuwiki__ports: 
+  - "{{ dokuwiki_port }}:{{ container_dokuwiki_port }}"
 
 # specs
 dokuwiki_memory: 1g

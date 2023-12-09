@@ -16,12 +16,16 @@
         volumes:
           - "{{ dockge_data_directory }}:/app/data:rw"
           - "/var/run/docker.sock:/var/run/docker.sock:ro"
-          - "{{ dockge_stacks_directory }}:/opt/stacks:rw"
+          - "{{ dockge_stacks_directory }}:{{ dockge_stacks_directory }}:rw"
           - "/etc/timezone:/etc/timezone:ro"
         env:
           DOCKGE_STACKS_DIR: "{{ dockge_stacks_directory }}"
-        ports:
-          - "{{ dockge_port }}:5001"
+        ports: >
+              {{
+                dockge__ports 
+                if lazytainer_dockge_enabled is false else [] 
+              }}
+        network_mode: '{{ lazytainer_container if lazytainer_dockge_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ dockge_memory }}"
         labels:
@@ -33,26 +37,7 @@
           traefik.http.services.dockge.loadbalancer.server.port: "9443"
           traefik.http.routers.dockge.middlewares: "dockge-ipwhitelist@docker"
           traefik.http.middlewares.dockge-ipwhitelist.ipwhitelist.sourcerange: "{{ dockge_ip_whitelist }}"
-      when: dockge_available_externally is true
-    
-    - name: Dockge Docker Container
-      community.docker.docker_container:
-        name: "{{ dockge_container_name }}"
-        image: "{{ dockge_image_name }}:{{ dockge_image_version }}"
-        pull: true
-        volumes:
-          - "{{ dockge_data_directory }}:/app/data:rw"
-          - "/var/run/docker.sock:/var/run/docker.sock:ro"
-          - "{{ dockge_stacks_directory }}:{{ dockge_stacks_directory }}:rw"
-          - "/etc/timezone:/etc/timezone:ro"
-        env:
-          DOCKGE_STACKS_DIR: "{{ dockge_stacks_directory }}"
-        ports:
-          - "{{ dockge_port }}:5001"
-        restart_policy: unless-stopped
-        memory: "{{ dockge_memory }}"
-      when: dockge_available_externally is false
-
+          lazytainer.group: "dockge"
   when: dockge_enabled is true
 
 - name: Stop Dockge

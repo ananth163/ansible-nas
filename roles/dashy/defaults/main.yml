@@ -5,6 +5,8 @@ dashy_available_externally: false
 # network
 dashy_port: "8082"
 dashy_hostname: "dashy"
+dashy__ports: 
+  - "{{ dashy_port }}:{{ container_dashy_port }}"
 
 # specs
 dashy_memory: 2g

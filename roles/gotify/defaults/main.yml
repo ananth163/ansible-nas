@@ -8,13 +8,15 @@ gotify_data_directory: "{{ docker_home }}/gotify"
 # network
 gotify_port: "2346"
 gotify_hostname: "gotify"
+gotify__ports: 
+  - "{{ gotify_port }}:{{ container_gotify_port }}"
 
 # docker
 gotify_container_name: "gotify"
 gotify_image_name: "gotify/server"
 gotify_image_version: "latest"
-gotify_user_id: "0"
-gotify_group_id: "0"
+gotify_user_id: "{{ uid }}"
+gotify_group_id: "{{ gid }}" 
 
 # specs
 gotify_memory: 200m

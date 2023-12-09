@@ -8,12 +8,14 @@ radarr_download_directory: "{{ downloads_root }}"
 radarr_data_directory: "{{ docker_home }}/radarr"
 
 # uid / gid
-radarr_user_id: "0"
-radarr_group_id: "0"
+radarr_user_id: "{{ uid }}"
+radarr_group_id: "{{ gid }}"
 
 # network
 radarr_port: "7878"
 radarr_hostname: "radarr"
+radarr__ports: 
+  - "{{ radarr_port }}:{{ container_radarr_port }}"
 
 # docker
 radarr_container_name: "radarr"

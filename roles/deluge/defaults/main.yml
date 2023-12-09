@@ -8,8 +8,8 @@ deluge_download_directory: "{{ downloads_root }}"
 deluge_watch_directory: "{{ torrents_root }}"
 
 # uid / gid
-deluge_user_id: "0"
-deluge_group_id: "0"
+deluge_user_id: "{{ uid }}"
+deluge_group_id: "{{ gid }}"
 
 # error logging
 deluge_log_level: "error"
@@ -17,6 +17,8 @@ deluge_log_level: "error"
 # network
 deluge_port: "8112"
 deluge_hostname: "deluge"
+deluge__ports: 
+  - "{{ deluge_port }}:{{ container_deluge_port }}"
 
 deluge_timezone: "{{ ansible_nas_timezone }}"
 
