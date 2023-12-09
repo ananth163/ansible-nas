@@ -1,7 +1,9 @@
 ---
 - name: Add Application ports to the list
+  vars:
+    lazytainer_ports: []
   ansible.builtin.set_fact:
-    devices: "{{ lazytainer_ports | default([]) + [item] }}"
+    lazytainer_ports: "{{ lazytainer_ports + [item] }}"
   with_items:
     - "{{ lazytainer_jackett_ports }}"
     - "{{ lazytainer_jellyfin_ports }}"
@@ -15,7 +17,7 @@
   vars:
     lazytainer_labels: {}
   ansible.builtin.set_fact:
-    devices: "{{ lazytainer_labels | combine(item) }}"
+    lazytainer_labels: "{{ lazytainer_labels | combine(item) }}"
   with_items:
     - "{{ lazytainer_jackett_labels }}"
     - "{{ lazytainer_jellyfin_labels }}"

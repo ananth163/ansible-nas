@@ -28,13 +28,13 @@ lazytainer_jackett_enabled: false
 jackett__ports: 
   - "{{ jackett_port }}:{{ container_jackett_port }}"
 lazytainer_jackett_ports: "{{ jackett__ports if ( lazytainer_jackett_enabled is true ) else [] }}"
-#lazytainer_ports: "{{ lazytainer_ports + lazytainer_jackett_port }}"
 
-lazytainer_jackett_labels:
+jackett_labels:
   lazytainer.group.jackett.ports: "{{ container_jackett_port }}"
   lazytainer.group.jackett.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
   lazytainer.group.jackett.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
   lazytainer.group.jackett.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_jackett_labels: "{{ jackett_labels if ( lazytainer_jackett_enabled is true ) else {} }}"
 
 ##
 ### Jellyfin
@@ -48,13 +48,13 @@ jellyfin__ports:
   - "{{ jellyfin_port_https }}:{{ container_jellyfin_port_https }}"
 
 lazytainer_jellyfin_ports: "{{ jellyfin__ports if ( lazytainer_jellyfin_enabled is true ) else [] }}"
-#lazytainer_ports: "{{ lazytainer_ports + lazytainer_jellyfin_port }}"
 
-lazytainer_jellyfin_labels:
+jellyfin_labels:
   lazytainer.group.jellyfin.ports: "{{ container_jellyfin_port_http }},{{ container_jellyfin_port_https }}"
   lazytainer.group.jellyfin.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
   lazytainer.group.jellyfin.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
   lazytainer.group.jellyfin.pollRate: "{{ lazytainer_pollRate }}" 
+lazytainer_jellyfin_labels: "{{ jellyfin_labels if ( lazytainer_jellyfin_enabled is true ) else {} }}"
 
 ###########################################################################
 ###########################################################################

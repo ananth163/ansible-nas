@@ -1,0 +1,950 @@
+###################
+#                 #
+#    airsonic     #
+#                 #
+###################
+                                  
+# network
+airsonic__ports: 
+  - "{{ airsonic_port }}:{{ container_airsonic_port }}"
+lazytainer_airsonic_ports: "{{ airsonic__ports if ( lazytainer_airsonic_enabled is true ) else [] }}"
+
+airsonic_labels:
+  lazytainer.group.airsonic.ports: "{{ container_airsonic_port }}"
+  lazytainer.group.airsonic.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.airsonic.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.airsonic.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_airsonic_labels: "{{ airsonic_labels if ( lazytainer_airsonic_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     bazarr      #
+#                 #
+###################
+                                  
+# network
+bazarr__ports: 
+  - "{{ bazarr_port }}:{{ container_bazarr_port }}"
+lazytainer_bazarr_ports: "{{ bazarr__ports if ( lazytainer_bazarr_enabled is true ) else [] }}"
+
+bazarr_labels:
+  lazytainer.group.bazarr.ports: "{{ container_bazarr_port }}"
+  lazytainer.group.bazarr.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.bazarr.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.bazarr.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_bazarr_labels: "{{ bazarr_labels if ( lazytainer_bazarr_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    booksonic    #
+#                 #
+###################
+                                  
+# network
+booksonic__ports: 
+  - "{{ booksonic_port }}:{{ container_booksonic_port }}"
+lazytainer_booksonic_ports: "{{ booksonic__ports if ( lazytainer_booksonic_enabled is true ) else [] }}"
+
+booksonic_labels:
+  lazytainer.group.booksonic.ports: "{{ container_booksonic_port }}"
+  lazytainer.group.booksonic.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.booksonic.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.booksonic.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_booksonic_labels: "{{ booksonic_labels if ( lazytainer_booksonic_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     calibre     #
+#                 #
+###################
+                                  
+# network
+calibre__ports: 
+  - "{{ calibre_port }}:{{ container_calibre_port }}"
+lazytainer_calibre_ports: "{{ calibre__ports if ( lazytainer_calibre_enabled is true ) else [] }}"
+
+calibre_labels:
+  lazytainer.group.calibre.ports: "{{ container_calibre_port }}"
+  lazytainer.group.calibre.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.calibre.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.calibre.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_calibre_labels: "{{ calibre_labels if ( lazytainer_calibre_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    cloudcmd     #
+#                 #
+###################
+                                  
+# network
+cloudcmd__ports: 
+  - "{{ cloudcmd_port }}:{{ container_cloudcmd_port }}"
+lazytainer_cloudcmd_ports: "{{ cloudcmd__ports if ( lazytainer_cloudcmd_enabled is true ) else [] }}"
+
+cloudcmd_labels:
+  lazytainer.group.cloudcmd.ports: "{{ container_cloudcmd_port }}"
+  lazytainer.group.cloudcmd.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.cloudcmd.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.cloudcmd.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_cloudcmd_labels: "{{ cloudcmd_labels if ( lazytainer_cloudcmd_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#   code_server   #
+#                 #
+###################
+                                  
+# network
+code_server__ports: 
+  - "{{ code_server_port }}:{{ container_code_server_port }}"
+lazytainer_code_server_ports: "{{ code_server__ports if ( lazytainer_code_server_enabled is true ) else [] }}"
+
+code_server_labels:
+  lazytainer.group.code_server.ports: "{{ container_code_server_port }}"
+  lazytainer.group.code_server.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.code_server.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.code_server.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_code_server_labels: "{{ code_server_labels if ( lazytainer_code_server_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#   couchpotato   #
+#                 #
+###################
+                                  
+# network
+couchpotato__ports: 
+  - "{{ couchpotato_port }}:{{ container_couchpotato_port }}"
+lazytainer_couchpotato_ports: "{{ couchpotato__ports if ( lazytainer_couchpotato_enabled is true ) else [] }}"
+
+couchpotato_labels:
+  lazytainer.group.couchpotato.ports: "{{ container_couchpotato_port }}"
+  lazytainer.group.couchpotato.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.couchpotato.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.couchpotato.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_couchpotato_labels: "{{ couchpotato_labels if ( lazytainer_couchpotato_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     dashy       #
+#                 #
+###################
+                                  
+# network
+dashy__ports: 
+  - "{{ dashy_port }}:{{ container_dashy_port }}"
+lazytainer_dashy_ports: "{{ dashy__ports if ( lazytainer_dashy_enabled is true ) else [] }}"
+
+dashy_labels:
+  lazytainer.group.dashy.ports: "{{ container_dashy_port }}"
+  lazytainer.group.dashy.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.dashy.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.dashy.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_dashy_labels: "{{ dashy_labels if ( lazytainer_dashy_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#   ddns_updater  #
+#                 #
+###################
+                                  
+# network
+ddns_updater__ports: 
+  - "{{ ddns_updater_port }}:{{ container_ddns_updater_port }}"
+lazytainer_ddns_updater_ports: "{{ ddns_updater__ports if ( lazytainer_ddns_updater_enabled is true ) else [] }}"
+
+ddns_updater_labels:
+  lazytainer.group.ddns_updater.ports: "{{ container_ddns_updater_port }}"
+  lazytainer.group.ddns_updater.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.ddns_updater.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.ddns_updater.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_ddns_updater_labels: "{{ ddns_updater_labels if ( lazytainer_ddns_updater_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     deluge      #
+#                 #
+###################
+                                  
+# network
+deluge__ports: 
+  - "{{ deluge_port }}:{{ container_deluge_port }}"
+lazytainer_deluge_ports: "{{ deluge__ports if ( lazytainer_deluge_enabled is true ) else [] }}"
+
+deluge_labels:
+  lazytainer.group.deluge.ports: "{{ container_deluge_port }}"
+  lazytainer.group.deluge.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.deluge.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.deluge.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_deluge_labels: "{{ deluge_labels if ( lazytainer_deluge_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     dockge      #
+#                 #
+###################
+                                  
+# network
+dockge__ports: 
+  - "{{ dockge_port }}:{{ container_dockge_port }}"
+lazytainer_dockge_ports: "{{ dockge__ports if ( lazytainer_dockge_enabled is true ) else [] }}"
+
+dockge_labels:
+  lazytainer.group.dockge.ports: "{{ container_dockge_port }}"
+  lazytainer.group.dockge.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.dockge.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.dockge.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_dockge_labels: "{{ dockge_labels if ( lazytainer_dockge_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    dokuwiki     #
+#                 #
+###################
+                                  
+# network
+dokuwiki__ports: 
+  - "{{ dokuwiki_port }}:{{ container_dokuwiki_port }}"
+lazytainer_dokuwiki_ports: "{{ dokuwiki__ports if ( lazytainer_dokuwiki_enabled is true ) else [] }}"
+
+dokuwiki_labels:
+  lazytainer.group.dokuwiki.ports: "{{ container_dokuwiki_port }}"
+  lazytainer.group.dokuwiki.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.dokuwiki.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.dokuwiki.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_dokuwiki_labels: "{{ dokuwiki_labels if ( lazytainer_dokuwiki_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    duplicacy    #
+#                 #
+###################
+                                  
+# network
+duplicacy__ports: 
+  - "{{ duplicacy_port }}:{{ container_duplicacy_port }}"
+lazytainer_duplicacy_ports: "{{ duplicacy__ports if ( lazytainer_duplicacy_enabled is true ) else [] }}"
+
+duplicacy_labels:
+  lazytainer.group.duplicacy.ports: "{{ container_duplicacy_port }}"
+  lazytainer.group.duplicacy.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.duplicacy.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.duplicacy.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_duplicacy_labels: "{{ duplicacy_labels if ( lazytainer_duplicacy_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    duplicati    #
+#                 #
+###################
+                                  
+# network
+duplicati__ports: 
+  - "{{ duplicati_port }}:{{ container_duplicati_port }}"
+lazytainer_duplicati_ports: "{{ duplicati__ports if ( lazytainer_duplicati_enabled is true ) else [] }}"
+
+duplicati_labels:
+  lazytainer.group.duplicati.ports: "{{ container_duplicati_port }}"
+  lazytainer.group.duplicati.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.duplicati.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.duplicati.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_duplicati_labels: "{{ duplicati_labels if ( lazytainer_duplicati_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     esphome     #
+#                 #
+###################
+                                  
+# network
+esphome__ports: 
+  - "{{ esphome_port }}:{{ container_esphome_port }}"
+lazytainer_esphome_ports: "{{ esphome__ports if ( lazytainer_esphome_enabled is true ) else [] }}"
+
+esphome_labels:
+  lazytainer.group.esphome.ports: "{{ container_esphome_port }}"
+  lazytainer.group.esphome.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.esphome.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.esphome.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_esphome_labels: "{{ esphome_labels if ( lazytainer_esphome_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     firefly     #
+#                 #
+###################
+                                  
+# network
+firefly__ports: 
+  - "{{ firefly_port }}:{{ container_firefly_port }}"
+lazytainer_firefly_ports: "{{ firefly__ports if ( lazytainer_firefly_enabled is true ) else [] }}"
+
+firefly_labels:
+  lazytainer.group.firefly.ports: "{{ container_firefly_port }}"
+  lazytainer.group.firefly.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.firefly.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.firefly.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_firefly_labels: "{{ firefly_labels if ( lazytainer_firefly_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    freshrss     #
+#                 #
+###################
+                                  
+# network
+freshrss__ports: 
+  - "{{ freshrss_port }}:{{ container_freshrss_port }}"
+lazytainer_freshrss_ports: "{{ freshrss__ports if ( lazytainer_freshrss_enabled is true ) else [] }}"
+
+freshrss_labels:
+  lazytainer.group.freshrss.ports: "{{ container_freshrss_port }}"
+  lazytainer.group.freshrss.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.freshrss.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.freshrss.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_freshrss_labels: "{{ freshrss_labels if ( lazytainer_freshrss_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#   get_iplayer   #
+#                 #
+###################
+                                  
+# network
+get_iplayer__ports: 
+  - "{{ get_iplayer_port }}:{{ container_get_iplayer_port }}"
+lazytainer_get_iplayer_ports: "{{ get_iplayer__ports if ( lazytainer_get_iplayer_enabled is true ) else [] }}"
+
+get_iplayer_labels:
+  lazytainer.group.get_iplayer.ports: "{{ container_get_iplayer_port }}"
+  lazytainer.group.get_iplayer.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.get_iplayer.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.get_iplayer.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_get_iplayer_labels: "{{ get_iplayer_labels if ( lazytainer_get_iplayer_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      gotify     #
+#                 #
+###################
+                                  
+# network
+gotify__ports: 
+  - "{{ gotify_port }}:{{ container_gotify_port }}"
+lazytainer_gotify_ports: "{{ gotify__ports if ( lazytainer_gotify_enabled is true ) else [] }}"
+
+gotify_labels:
+  lazytainer.group.gotify.ports: "{{ container_gotify_port }}"
+  lazytainer.group.gotify.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.gotify.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.gotify.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_gotify_labels: "{{ gotify_labels if ( lazytainer_gotify_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    guacamole    #
+#                 #
+###################
+                                  
+# network
+guacamole__ports: 
+  - "{{ guacamole_port }}:{{ container_guacamole_port }}"
+lazytainer_guacamole_ports: "{{ guacamole__ports if ( lazytainer_guacamole_enabled is true ) else [] }}"
+
+guacamole_labels:
+  lazytainer.group.guacamole.ports: "{{ container_guacamole_port }}"
+  lazytainer.group.guacamole.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.guacamole.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.guacamole.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_guacamole_labels: "{{ guacamole_labels if ( lazytainer_guacamole_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#   hello_world   #
+#                 #
+###################
+                                  
+# network
+hello_world__ports: 
+  - "{{ hello_world_port }}:{{ container_hello_world_port }}"
+lazytainer_hello_world_ports: "{{ hello_world__ports if ( lazytainer_hello_world_enabled is true ) else [] }}"
+
+hello_world_labels:
+  lazytainer.group.hello_world.ports: "{{ container_hello_world_port }}"
+  lazytainer.group.hello_world.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.hello_world.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.hello_world.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_hello_world_labels: "{{ hello_world_labels if ( lazytainer_hello_world_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     jackett     #
+#                 #
+###################
+                                  
+# network
+jackett__ports: 
+  - "{{ jackett_port }}:{{ container_jackett_port }}"
+lazytainer_jackett_ports: "{{ jackett__ports if ( lazytainer_jackett_enabled is true ) else [] }}"
+
+jackett_labels:
+  lazytainer.group.jackett.ports: "{{ container_jackett_port }}"
+  lazytainer.group.jackett.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.jackett.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.jackett.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_jackett_labels: "{{ jackett_labels if ( lazytainer_jackett_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      joomla     #
+#                 #
+###################
+                                  
+# network
+joomla__ports: 
+  - "{{ joomla_port }}:{{ container_joomla_port }}"
+lazytainer_joomla_ports: "{{ joomla__ports if ( lazytainer_joomla_enabled is true ) else [] }}"
+
+joomla_labels:
+  lazytainer.group.joomla.ports: "{{ container_joomla_port }}"
+  lazytainer.group.joomla.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.joomla.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.joomla.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_joomla_labels: "{{ joomla_labels if ( lazytainer_joomla_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      lidarr     #
+#                 #
+###################
+                                  
+# network
+lidarr__ports: 
+  - "{{ lidarr_port }}:{{ container_lidarr_port }}"
+lazytainer_lidarr_ports: "{{ lidarr__ports if ( lazytainer_lidarr_enabled is true ) else [] }}"
+
+lidarr_labels:
+  lazytainer.group.lidarr.ports: "{{ container_lidarr_port }}"
+  lazytainer.group.lidarr.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.lidarr.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.lidarr.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_lidarr_labels: "{{ lidarr_labels if ( lazytainer_lidarr_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      mealie     #
+#                 #
+###################
+                                  
+# network
+mealie__ports: 
+  - "{{ mealie_port }}:{{ container_mealie_port }}"
+lazytainer_mealie_ports: "{{ mealie__ports if ( lazytainer_mealie_enabled is true ) else [] }}"
+
+mealie_labels:
+  lazytainer.group.mealie.ports: "{{ container_mealie_port }}"
+  lazytainer.group.mealie.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.mealie.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.mealie.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_mealie_labels: "{{ mealie_labels if ( lazytainer_mealie_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    miniflux     #
+#                 #
+###################
+                                  
+# network
+miniflux__ports: 
+  - "{{ miniflux_port }}:{{ container_miniflux_port }}"
+lazytainer_miniflux_ports: "{{ miniflux__ports if ( lazytainer_miniflux_enabled is true ) else [] }}"
+
+miniflux_labels:
+  lazytainer.group.miniflux.ports: "{{ container_miniflux_port }}"
+  lazytainer.group.miniflux.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.miniflux.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.miniflux.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_miniflux_labels: "{{ miniflux_labels if ( lazytainer_miniflux_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#       n8n       #
+#                 #
+###################
+                                  
+# network
+n8n__ports: 
+  - "{{ n8n_port }}:{{ container_n8n_port }}"
+lazytainer_n8n_ports: "{{ n8n__ports if ( lazytainer_n8n_enabled is true ) else [] }}"
+
+n8n_labels:
+  lazytainer.group.n8n.ports: "{{ container_n8n_port }}"
+  lazytainer.group.n8n.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.n8n.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.n8n.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_n8n_labels: "{{ n8n_labels if ( lazytainer_n8n_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    navidrome    #
+#                 #
+###################
+                                  
+# network
+navidrome__ports: 
+  - "{{ navidrome_port }}:{{ container_navidrome_port }}"
+lazytainer_navidrome_ports: "{{ navidrome__ports if ( lazytainer_navidrome_enabled is true ) else [] }}"
+
+navidrome_labels:
+  lazytainer.group.navidrome.ports: "{{ container_navidrome_port }}"
+  lazytainer.group.navidrome.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.navidrome.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.navidrome.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_navidrome_labels: "{{ navidrome_labels if ( lazytainer_navidrome_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     netdata     #
+#                 #
+###################
+                                  
+# network
+netdata__ports: 
+  - "{{ netdata_port }}:{{ container_netdata_port }}"
+lazytainer_netdata_ports: "{{ netdata__ports if ( lazytainer_netdata_enabled is true ) else [] }}"
+
+netdata_labels:
+  lazytainer.group.netdata.ports: "{{ container_netdata_port }}"
+  lazytainer.group.netdata.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.netdata.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.netdata.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_netdata_labels: "{{ netdata_labels if ( lazytainer_netdata_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    nextcloud    #
+#                 #
+###################
+                                  
+# network
+nextcloud__ports: 
+  - "{{ nextcloud_port }}:{{ container_nextcloud_port }}"
+lazytainer_nextcloud_ports: "{{ nextcloud__ports if ( lazytainer_nextcloud_enabled is true ) else [] }}"
+
+nextcloud_labels:
+  lazytainer.group.nextcloud.ports: "{{ container_nextcloud_port }}"
+  lazytainer.group.nextcloud.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.nextcloud.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.nextcloud.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_nextcloud_labels: "{{ nextcloud_labels if ( lazytainer_nextcloud_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      nzbget     #
+#                 #
+###################
+                                  
+# network
+nzbget__ports: 
+  - "{{ nzbget_port }}:{{ container_nzbget_port }}"
+lazytainer_nzbget_ports: "{{ nzbget__ports if ( lazytainer_nzbget_enabled is true ) else [] }}"
+
+nzbget_labels:
+  lazytainer.group.nzbget.ports: "{{ container_nzbget_port }}"
+  lazytainer.group.nzbget.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.nzbget.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.nzbget.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_nzbget_labels: "{{ nzbget_labels if ( lazytainer_nzbget_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    octoprint    #
+#                 #
+###################
+                                  
+# network
+octoprint__ports: 
+  - "{{ octoprint_port }}:{{ container_octoprint_port }}"
+lazytainer_octoprint_ports: "{{ octoprint__ports if ( lazytainer_octoprint_enabled is true ) else [] }}"
+
+octoprint_labels:
+  lazytainer.group.octoprint.ports: "{{ container_octoprint_port }}"
+  lazytainer.group.octoprint.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.octoprint.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.octoprint.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_octoprint_labels: "{{ octoprint_labels if ( lazytainer_octoprint_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      ombi       #
+#                 #
+###################
+                                  
+# network
+ombi__ports: 
+  - "{{ ombi_port }}:{{ container_ombi_port }}"
+lazytainer_ombi_ports: "{{ ombi__ports if ( lazytainer_ombi_enabled is true ) else [] }}"
+
+ombi_labels:
+  lazytainer.group.ombi.ports: "{{ container_ombi_port }}"
+  lazytainer.group.ombi.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.ombi.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.ombi.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_ombi_labels: "{{ ombi_labels if ( lazytainer_ombi_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     piwigo      #
+#                 #
+###################
+                                  
+# network
+piwigo__ports: 
+  - "{{ piwigo_port }}:{{ container_piwigo_port }}"
+lazytainer_piwigo_ports: "{{ piwigo__ports if ( lazytainer_piwigo_enabled is true ) else [] }}"
+
+piwigo_labels:
+  lazytainer.group.piwigo.ports: "{{ container_piwigo_port }}"
+  lazytainer.group.piwigo.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.piwigo.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.piwigo.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_piwigo_labels: "{{ piwigo_labels if ( lazytainer_piwigo_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    portainer    #
+#                 #
+###################
+                                  
+# network
+portainer__ports: 
+  - "{{ portainer_port }}:{{ container_portainer_port }}"
+lazytainer_portainer_ports: "{{ portainer__ports if ( lazytainer_portainer_enabled is true ) else [] }}"
+
+portainer_labels:
+  lazytainer.group.portainer.ports: "{{ container_portainer_port }}"
+  lazytainer.group.portainer.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.portainer.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.portainer.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_portainer_labels: "{{ portainer_labels if ( lazytainer_portainer_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    promtail     #
+#                 #
+###################
+                                  
+# network
+promtail__ports: 
+  - "{{ promtail_port }}:{{ container_promtail_port }}"
+lazytainer_promtail_ports: "{{ promtail__ports if ( lazytainer_promtail_enabled is true ) else [] }}"
+
+promtail_labels:
+  lazytainer.group.promtail.ports: "{{ container_promtail_port }}"
+  lazytainer.group.promtail.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.promtail.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.promtail.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_promtail_labels: "{{ promtail_labels if ( lazytainer_promtail_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    prowlarr     #
+#                 #
+###################
+                                  
+# network
+prowlarr__ports: 
+  - "{{ prowlarr_port }}:{{ container_prowlarr_port }}"
+lazytainer_prowlarr_ports: "{{ prowlarr__ports if ( lazytainer_prowlarr_enabled is true ) else [] }}"
+
+prowlarr_labels:
+  lazytainer.group.prowlarr.ports: "{{ container_prowlarr_port }}"
+  lazytainer.group.prowlarr.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.prowlarr.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.prowlarr.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_prowlarr_labels: "{{ prowlarr_labels if ( lazytainer_prowlarr_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      pyload     #
+#                 #
+###################
+                                  
+# network
+pyload__ports: 
+  - "{{ pyload_port }}:{{ container_pyload_port }}"
+lazytainer_pyload_ports: "{{ pyload__ports if ( lazytainer_pyload_enabled is true ) else [] }}"
+
+pyload_labels:
+  lazytainer.group.pyload.ports: "{{ container_pyload_port }}"
+  lazytainer.group.pyload.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.pyload.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.pyload.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_pyload_labels: "{{ pyload_labels if ( lazytainer_pyload_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      radarr     #
+#                 #
+###################
+                                  
+# network
+radarr__ports: 
+  - "{{ radarr_port }}:{{ container_radarr_port }}"
+lazytainer_radarr_ports: "{{ radarr__ports if ( lazytainer_radarr_enabled is true ) else [] }}"
+
+radarr_labels:
+  lazytainer.group.radarr.ports: "{{ container_radarr_port }}"
+  lazytainer.group.radarr.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.radarr.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.radarr.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_radarr_labels: "{{ radarr_labels if ( lazytainer_radarr_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    rssbridge    #
+#                 #
+###################
+                                  
+# network
+rssbridge__ports: 
+  - "{{ rssbridge_port }}:{{ container_rssbridge_port }}"
+lazytainer_rssbridge_ports: "{{ rssbridge__ports if ( lazytainer_rssbridge_enabled is true ) else [] }}"
+
+rssbridge_labels:
+  lazytainer.group.rssbridge.ports: "{{ container_rssbridge_port }}"
+  lazytainer.group.rssbridge.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.rssbridge.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.rssbridge.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_rssbridge_labels: "{{ rssbridge_labels if ( lazytainer_rssbridge_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     sabnzbd     #
+#                 #
+###################
+                                  
+# network
+sabnzbd__ports: 
+  - "{{ sabnzbd_port }}:{{ container_sabnzbd_port }}"
+lazytainer_sabnzbd_ports: "{{ sabnzbd__ports if ( lazytainer_sabnzbd_enabled is true ) else [] }}"
+
+sabnzbd_labels:
+  lazytainer.group.sabnzbd.ports: "{{ container_sabnzbd_port }}"
+  lazytainer.group.sabnzbd.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.sabnzbd.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.sabnzbd.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_sabnzbd_labels: "{{ sabnzbd_labels if ( lazytainer_sabnzbd_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    sickchill    #
+#                 #
+###################
+                                  
+# network
+sickchill__ports: 
+  - "{{ sickchill_port }}:{{ container_sickchill_port }}"
+lazytainer_sickchill_ports: "{{ sickchill__ports if ( lazytainer_sickchill_enabled is true ) else [] }}"
+
+sickchill_labels:
+  lazytainer.group.sickchill.ports: "{{ container_sickchill_port }}"
+  lazytainer.group.sickchill.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.sickchill.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.sickchill.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_sickchill_labels: "{{ sickchill_labels if ( lazytainer_sickchill_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      sonarr     #
+#                 #
+###################
+                                  
+# network
+sonarr__ports: 
+  - "{{ sonarr_port }}:{{ container_sonarr_port }}"
+lazytainer_sonarr_ports: "{{ sonarr__ports if ( lazytainer_sonarr_enabled is true ) else [] }}"
+
+sonarr_labels:
+  lazytainer.group.sonarr.ports: "{{ container_sonarr_port }}"
+  lazytainer.group.sonarr.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.sonarr.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.sonarr.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_sonarr_labels: "{{ sonarr_labels if ( lazytainer_sonarr_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    syncthing    #
+#                 #
+###################
+                                  
+# network
+syncthing__ports: 
+  - "{{ syncthing_port }}:{{ container_syncthing_port }}"
+lazytainer_syncthing_ports: "{{ syncthing__ports if ( lazytainer_syncthing_enabled is true ) else [] }}"
+
+syncthing_labels:
+  lazytainer.group.syncthing.ports: "{{ container_syncthing_port }}"
+  lazytainer.group.syncthing.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.syncthing.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.syncthing.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_syncthing_labels: "{{ syncthing_labels if ( lazytainer_syncthing_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    tautulli     #
+#                 #
+###################
+                                  
+# network
+tautulli__ports: 
+  - "{{ tautulli_port }}:{{ container_tautulli_port }}"
+lazytainer_tautulli_ports: "{{ tautulli__ports if ( lazytainer_tautulli_enabled is true ) else [] }}"
+
+tautulli_labels:
+  lazytainer.group.tautulli.ports: "{{ container_tautulli_port }}"
+  lazytainer.group.tautulli.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.tautulli.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.tautulli.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_tautulli_labels: "{{ tautulli_labels if ( lazytainer_tautulli_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    tiddlywiki   #
+#                 #
+###################
+                                  
+# network
+tiddlywiki__ports: 
+  - "{{ tiddlywiki_port }}:{{ container_tiddlywiki_port }}"
+lazytainer_tiddlywiki_ports: "{{ tiddlywiki__ports if ( lazytainer_tiddlywiki_enabled is true ) else [] }}"
+
+tiddlywiki_labels:
+  lazytainer.group.tiddlywiki.ports: "{{ container_tiddlywiki_port }}"
+  lazytainer.group.tiddlywiki.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.tiddlywiki.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.tiddlywiki.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_tiddlywiki_labels: "{{ tiddlywiki_labels if ( lazytainer_tiddlywiki_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#   timemachine   #
+#                 #
+###################
+                                  
+# network
+timemachine__ports: 
+  - "{{ timemachine_port }}:{{ container_timemachine_port }}"
+lazytainer_timemachine_ports: "{{ timemachine__ports if ( lazytainer_timemachine_enabled is true ) else [] }}"
+
+timemachine_labels:
+  lazytainer.group.timemachine.ports: "{{ container_timemachine_port }}"
+  lazytainer.group.timemachine.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.timemachine.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.timemachine.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_timemachine_labels: "{{ timemachine_labels if ( lazytainer_timemachine_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#     unmanic     #
+#                 #
+###################
+                                  
+# network
+unmanic__ports: 
+  - "{{ unmanic_port }}:{{ container_unmanic_port }}"
+lazytainer_unmanic_ports: "{{ unmanic__ports if ( lazytainer_unmanic_enabled is true ) else [] }}"
+
+unmanic_labels:
+  lazytainer.group.unmanic.ports: "{{ container_unmanic_port }}"
+  lazytainer.group.unmanic.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.unmanic.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.unmanic.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_unmanic_labels: "{{ unmanic_labels if ( lazytainer_unmanic_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#    wallabag     #
+#                 #
+###################
+                                  
+# network
+wallabag__ports: 
+  - "{{ wallabag_port }}:{{ container_wallabag_port }}"
+lazytainer_wallabag_ports: "{{ wallabag__ports if ( lazytainer_wallabag_enabled is true ) else [] }}"
+
+wallabag_labels:
+  lazytainer.group.wallabag.ports: "{{ container_wallabag_port }}"
+  lazytainer.group.wallabag.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.wallabag.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.wallabag.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_wallabag_labels: "{{ wallabag_labels if ( lazytainer_wallabag_enabled is true ) else {} }}"
+ 
+ 
+###################
+#                 #
+#      znc        #
+#                 #
+###################
+                                  
+# network
+znc__ports: 
+  - "{{ znc_port }}:{{ container_znc_port }}"
+lazytainer_znc_ports: "{{ znc__ports if ( lazytainer_znc_enabled is true ) else [] }}"
+
+znc_labels:
+  lazytainer.group.znc.ports: "{{ container_znc_port }}"
+  lazytainer.group.znc.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
+  lazytainer.group.znc.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
+  lazytainer.group.znc.pollRate: "{{ lazytainer_pollRate }}"
+lazytainer_znc_labels: "{{ znc_labels if ( lazytainer_znc_enabled is true ) else {} }}"
+ 
+ 
