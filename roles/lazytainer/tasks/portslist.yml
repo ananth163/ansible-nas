@@ -1,7 +1,7 @@
 ---
 - name: Add Application ports to the list
   ansible.builtin.set_fact:
-    devices: "{{ lazytainer_ports + [item] }}"
+    devices: "{{ lazytainer_ports | default([]) + [item] }}"
   with_items:
     - "{{ lazytainer_jackett_ports }}"
     - "{{ lazytainer_jellyfin_ports }}"
@@ -9,4 +9,18 @@
 - name: Debug list
   ansible.builtin.debug:
     var: lazytainer_ports
+    verbosity: 0
+
+- name: Add Labels to the Dictionary
+  vars:
+    lazytainer_labels: {}
+  ansible.builtin.set_fact:
+    devices: "{{ lazytainer_labels | combine(item) }}"
+  with_items:
+    - "{{ lazytainer_jackett_labels }}"
+    - "{{ lazytainer_jellyfin_labels }}"
+
+- name: Debug Dictionary
+  ansible.builtin.debug:
+    var: lazytainer_labels
     verbosity: 0
