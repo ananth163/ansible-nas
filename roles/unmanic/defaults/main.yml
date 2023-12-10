@@ -8,12 +8,14 @@ unmanic_download_directory: "{{ downloads_root }}"
 unmanic_data_directory: "{{ docker_home }}/unmanic"
 
 # uid / gid
-unmanic_user_id: "0"
-unmanic_group_id: "0"
+unmanic_user_id: "{{ uid }}"
+unmanic_group_id: "{{ gid }}"
 
 # network
 unmanic_port: "8888"
 unmanic_hostname: "unmanic"
+unmanic__ports: 
+  - "{{ unmanic_port }}:{{ container_unmanic_port }}"
 
 # docker
 unmanic_container_name: "unmanic"

@@ -8,6 +8,8 @@ wallabag_data_directory: "{{ docker_home }}/wallabag"
 # Networking
 wallabag_port: "7780"
 wallabag_hostname: wallabag
+wallabag__ports: 
+  - "{{ wallabag_port }}:{{ container_wallabag_port }}"
 
 # Container
 wallabag_memory: 1g

@@ -8,12 +8,14 @@ sonarr_tv_directory: "{{ tv_root }}"
 sonarr_download_directory: "{{ downloads_root }}"
 
 # uid / gid
-sonarr_user_id: "0"
-sonarr_group_id: "0"
+sonarr_user_id: "{{ uid }}"
+sonarr_group_id: "{{ gid }}"
 
 # network
 sonarr_port: "8989"
 sonarr_hostname: "sonarr"
+sonarr__ports: 
+  - "{{ sonarr_port }}:{{ container_sonarr_port }}"
 
 # docker
 sonarr_container_name: "sonarr"

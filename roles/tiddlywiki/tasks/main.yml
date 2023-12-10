@@ -10,8 +10,11 @@
       community.docker.docker_container:
         name: "{{ tiddlywiki_container_name }}"
         image: "{{ tiddlywiki_image_name }}:{{ tiddlywiki_image_version }}"
-        ports:
-          - "{{ tiddlywiki_port }}:8080"
+        ports: >
+              {{
+                tiddlywiki__ports 
+                if lazytainer_tiddlywiki_enabled is false else [] 
+              }}
         volumes:
           - "{{ tiddlywiki_data_directory }}:/var/lib/tiddlywiki"
         env:
@@ -19,6 +22,7 @@
           USERNAME: "{{ tiddlywiki_username | default(omit) }}"
           PASSWORD: "{{ tiddlywiki_password | default(omit) }}"
           DEBUG: "{{ tiddlywiki_debug_level | default(omit) }}"
+        network_mode: '{{ lazytainer_container if lazytainer_tiddlywiki_enabled is true else omit }}'
         pull: true
         restart_policy: unless-stopped
         memory: "{{ tiddlywiki_memory }}"
@@ -29,6 +33,7 @@
           traefik.http.routers.tiddlywiki.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.tiddlywiki.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.tiddlywiki.loadbalancer.server.port: "8080"
+          lazytainer.group: "tiddlywiki"
   when: tiddlywiki_enabled is true
 
 - name: Stop Tiddlywiki
