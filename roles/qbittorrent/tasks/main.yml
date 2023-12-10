@@ -20,15 +20,17 @@
           - "{{ qbittorrent_config_directory }}:/config:rw"
           - "{{ qbittorrent_download_directory }}:/downloads:rw"
           - "{{ qbittorrent_watch_directory }}:/watch:rw"
-        ports:
-          - "{{ qbittorrent_webui_port }}:8080"
-          - "{{ qbittorrent_external_port }}:6881"
-          - "{{ qbittorrent_external_port }}:6881/udp"
+        ports: >
+              {{
+                qbittorrent__ports 
+                if lazytainer_qbittorrent_enabled is false else [] 
+              }}
         env:
           TZ: "{{ qbittorrent_timezone }}"
           PUID: "{{ qbittorrent_user_id }}"
           PGID: "{{ qbittorrent_group_id }}"
           WEBUI_PORT: "{{ qbittorrent_webui_port }}"
+        network_mode: '{{ lazytainer_container if lazytainer_qbittorrent_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ qbittorrent_memory }}"
         labels:
@@ -38,30 +40,7 @@
           traefik.http.routers.qbittorrent.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.qbittorrent.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.qbittorrent.loadbalancer.server.port: "8080"
-      when: qbittorrent_available_externally is true
-
-    - name: Qbittorrent Docker Container
-      community.docker.docker_container:
-        name: "{{ qbittorrent_container_name }}"
-        image: "{{ qbittorrent_image_name }}:{{ qbittorrent_image_version }}"
-        pull: true
-        volumes:
-          - "{{ qbittorrent_config_directory }}:/config:rw"
-          - "{{ qbittorrent_download_directory }}:/downloads:rw"
-          - "{{ qbittorrent_watch_directory }}:/watch:rw"
-        ports:
-          - "{{ qbittorrent_webui_port }}:8080"
-          - "{{ qbittorrent_external_port }}:6881"
-          - "{{ qbittorrent_external_port }}:6881/udp"
-        env:
-          TZ: "{{ qbittorrent_timezone }}"
-          PUID: "{{ qbittorrent_user_id }}"
-          PGID: "{{ qbittorrent_group_id }}"
-          WEBUI_PORT: "{{ qbittorrent_webui_port }}"
-        restart_policy: unless-stopped
-        memory: "{{ qbittorrent_memory }}"        
-      when: qbittorrent_available_externally is false
-
+          lazytainer.group: "qbittorrent"
   when: qbittorrent_enabled is true
 
 - name: Stop Qbittorrent

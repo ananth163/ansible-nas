@@ -9,6 +9,9 @@ organizr_data_directory: "{{ docker_home }}/organizr"
 organizr_port_http: "10081"
 organizr_port_https: "10444"
 organizr_hostname: "organizr"
+organizr__ports: 
+  - "{{ organizr_port_http }}:{{ container_organizr_port_http }}"
+  - "{{ organizr_port_https }}:{{ container_organizr_port_https }}"
 
 # docker
 organizr_container_name: "organizr"

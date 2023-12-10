@@ -9,12 +9,14 @@ mylar_comics_directory: "{{ comics_root }}"
 mylar_downloads_directory: "{{ downloads_root }}"
 
 # uid / gid
-mylar_user_id: "0"
-mylar_group_id: "0"
+mylar_user_id: "{{ uid }}"
+mylar_group_id: "{{ gid }}"
 
 # network
 mylar_hostname: "mylar"
 mylar_port_http: "8585"
+mylar__ports: 
+  - "{{ mylar_port_http }}:{{ container_mylar_port_http }}"
 
 # docker
 mylar_container_name: "mylar"

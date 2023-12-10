@@ -23,10 +23,13 @@
           PUID: "{{ ubooquity_user_id }}"
           PGID: "{{ ubooquity_group_id }}"
           MAXMEM: "1024"
-        ports:
-          - "{{ ubooquity_port_webui }}:2202"
-          - "{{ ubooquity_port_admin }}:2203"
+        ports: >
+              {{
+                ubooquity__ports 
+                if lazytainer_ubooquity_enabled is false else [] 
+              }}
         restart_policy: unless-stopped
+        network_mode: '{{ lazytainer_container if lazytainer_ubooquity_enabled is true else omit }}'
         memory: "{{ ubooquity_memory }}"
         labels:
           traefik.enable: "{{ ubooquity_available_externally | string }}"
@@ -35,6 +38,7 @@
           traefik.http.routers.ubooquity.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.ubooquity.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.ubooquity.loadbalancer.server.port: "2202"
+          lazytainer.group: "ubooquity"
   when: ubooquity_enabled is true
 
 - name: Stop Ubooquity

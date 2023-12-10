@@ -3,8 +3,8 @@ ubooquity_enabled: false
 ubooquity_available_externally: false
 
 # uid / gid
-ubooquity_user_id: "0"
-ubooquity_group_id: "0"
+ubooquity_user_id: "{{ uid }}"
+ubooquity_group_id: "{{ gid }}"
 
 # Directories
 ubooquity_data_directory: "{{ docker_home }}/ubooquity"
@@ -13,6 +13,9 @@ ubooquity_data_directory: "{{ docker_home }}/ubooquity"
 ubooquity_port_webui: "2202"
 ubooquity_port_admin: "2203"
 ubooquity_hostname: ubooquity
+ubooquity__ports: 
+  - "{{ ubooquity_port_webui }}:{{ container_ubooquity_port_webui }}"
+  - "{{ ubooquity_port_admin }}:{{ container_ubooquity_port_admin }}"
 
 # Container
 ubooquity_memory: 1g

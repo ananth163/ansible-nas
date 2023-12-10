@@ -17,9 +17,11 @@
         volumes:
           - "{{ krusader_config_directory }}:/config:rw"
           - "{{ krusader_browse_directory }}:/mnt/fs"
-        ports:
-          - "{{ krusader_port_http }}:6080"
-          - "{{ krusader_port_vnc }}:5900"
+        ports: >
+              {{
+                krusader__ports 
+                if lazytainer_krusader_enabled is false else [] 
+              }}
         env:
           PUID: "{{ krusader_user_id }}"
           PGID: "{{ krusader_group_id }}"
@@ -27,6 +29,7 @@
           TEMP_FOLDER: "{{ krusader_temp_folder }}"
           WEBPAGE_TITLE: "{{ krusader_webpage_title }}"
           UMASK: "{{ krusader_umask }}"
+        network_mode: '{{ lazytainer_container if lazytainer_krusader_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ krusader_memory }}"
         labels:
@@ -36,6 +39,7 @@
           traefik.http.routers.krusader.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.krusader.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.krusader.loadbalancer.server.port: "6080"
+          lazytainer.group: "krusader"
   when: krusader_enabled is true
 
 - name: Stop Krusader

@@ -3,8 +3,8 @@ krusader_enabled: false
 krusader_available_externally: "false"
 
 # uid / gid
-krusader_user_id: "0"
-krusader_group_id: "0"
+krusader_user_id: "1000"
+krusader_group_id: "1000"
 
 # directories
 krusader_config_directory: "{{ docker_home }}/krusader/config"
@@ -14,6 +14,9 @@ krusader_browse_directory: "/"
 krusader_port_http: "6080"
 krusader_port_vnc: "5900"
 krusader_hostname: "krusader"
+krusader__ports: 
+  - "{{ krusader_port_http }}:{{ container_krusader_port_http }}"
+  - "{{ krusader_port_vnc }}:{{ container_krusader_port_vnc }}"
 
 # docker
 krusader_container_name: "krusader"
