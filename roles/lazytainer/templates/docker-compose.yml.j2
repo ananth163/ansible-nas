@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  lazytainer:
+    container_name: lazytainer
+    image: ghcr.io/vmorganp/lazytainer:master
+    environment:
+      - VERBOSE=true
+    ports:
+      - 8096:8096
+      - 8920:8920
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - lazytainer.group.jellyfin.ports=8096,8920
+      - lazytainer.group.jellyfin.inactiveTimeout=120
+      - lazytainer.group.jellyfin.minPacketThreshold=500
+      - lazytainer.group.jellyfin.pollRate=1
+
+{% if lazytainer_airsonic_enabled %}    
+    airsonic:
+      image: airsonic/airsonic:latest
+      container_name: airsonic
+      restart: unless-stopped
+      volumes:
+        - {{ airsonic_data_directory }}/data:/airsonic/data:rw
+        - {{ airsonic_data_directory }}/playlists:/airsonic/playlists:rw
+        - {{ airsonic_music_directory }}:/airsonic/music:rw
+        - {{ airsonic_podcasts_directory }}:/airsonic/podcasts:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ=Asia/Calcutta
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=airsonic
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_jellyfin_enabled %}    
+    jellyfin:
+      image: lscr.io/linuxserver/jellyfin:latest
+      container_name: jellyfin
+      restart: unless-stopped
+      volumes:
+        - /mnt/local/docker/jellyfin/config:/config:rw
+        - /mnt/local/Media/TV:/data/tvshows:rw
+        - /mnt/local/Media/Movies:/data/movies:rw
+      environment:
+        - PUID=998
+        - PGID=1001
+        - TZ=Asia/Calcutta
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=jellyfin
+      depends_on:
+        - lazytainer
+{% endif %}

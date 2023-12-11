@@ -12,8 +12,6 @@ mealie_group_id: "1000"
 # network
 mealie_hostname: "mealie"
 mealie_port: "9925"
-mealie__ports: 
-  - "{{ mealie_port }}:{{ container_mealie_port }}"
 
 # docker
 mealie_container_name: "mealie"

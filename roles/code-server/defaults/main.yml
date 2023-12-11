@@ -13,8 +13,6 @@ code_server_group_id: "{{ gid }}"
 # network
 code_server_port: "8443"
 code_server_hostname: "code-server"
-code_server__ports: 
-  - "{{ code_server_port }}:{{ container_code_server_port }}"
 
 # specs
 code_server_memory: 1g

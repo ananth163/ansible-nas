@@ -14,8 +14,6 @@ bazarr_group_id: "{{ gid }}"
 # network
 bazarr_port: "6767"
 bazarr_hostname: "bazarr"
-bazarr__ports: 
-  - "{{ bazarr_port }}:{{ container_bazarr_port }}"
 
 # specs
 bazarr_memory: 1g

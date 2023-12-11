@@ -16,12 +16,8 @@
         pull: true
         volumes:
           - "{{ rssbridge_data_directory }}/data:/config:rw"
-        ports: >
-              {{
-                rssbridge__ports 
-                if lazytainer_rssbridge_enabled is false else [] 
-              }}
-        network_mode: '{{ lazytainer_container if lazytainer_rssbridge_enabled is true else omit }}'
+        ports:
+          - "{{ rssbridge_port }}:80"
         restart_policy: unless-stopped
         memory: "{{ rssbridge_memory }}"
         labels:
@@ -31,7 +27,6 @@
           traefik.http.routers.rssbridge.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.rssbridge.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.rssbridge.loadbalancer.server.port: "80"
-          lazytainer.group: "rssbridge"
   when: rssbridge_enabled is true
 
 - name: Stop RSSBridge

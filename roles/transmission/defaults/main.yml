@@ -15,10 +15,6 @@ transmission_group_id: "{{ gid }}"
 transmission_webui_port: "9092"
 transmission_external_port: "51414"
 transmission_hostname: "transmission"
-transmission__ports: 
-  - "{{ transmission_webui_port }}:{{ container_transmission_webui_port }}"
-  - "{{ transmission_external_port }}:{{ container_transmission_external_port }}"
-  - "{{ transmission_external_port_udp }}:{{ container_transmission_external_port_udp }}"
 
 transmission_timezone: "{{ ansible_nas_timezone }}"
 

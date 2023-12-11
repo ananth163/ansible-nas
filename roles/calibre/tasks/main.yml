@@ -21,12 +21,8 @@
           PUID: "{{ calibre_user_id }}"
           PGID: "{{ calibre_group_id }}"
           DOCKER_MODS: "{{ calibre_ebook_conversion }}"
-        ports: >
-              {{
-                calibre__ports 
-                if lazytainer_calibre_enabled is false else [] 
-              }}
-        network_mode: '{{ lazytainer_container if lazytainer_calibre_enabled is true else omit }}'
+        ports:
+          - "{{ calibre_port }}:8083"
         restart_policy: unless-stopped
         memory: "{{ calibre_memory }}"
         labels:
@@ -36,7 +32,6 @@
           traefik.http.routers.calibre.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.calibre.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.calibre.loadbalancer.server.port: "8083"
-          lazytainer.group: "calibre"
   when: calibre_enabled is true
 
 - name: Stop Calibre

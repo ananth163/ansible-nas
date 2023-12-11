@@ -19,13 +19,10 @@
           PUID: "{{ organizr_user_id }}"
           PGID: "{{ organizr_group_id }}"
           TZ: "{{ ansible_nas_timezone }}"
-        ports: >
-              {{
-                organizr__ports 
-                if lazytainer_organizr_enabled is false else [] 
-              }}
+        ports:
+          - "{{ organizr_port_http }}:80"
+          - "{{ organizr_port_https }}:443"
         restart_policy: unless-stopped
-        network_mode: '{{ lazytainer_container if lazytainer_organizr_enabled is true else omit }}'
         memory: "{{ organizr_memory }}"
         labels:
           traefik.enable: "{{ organizr_available_externally | string }}"
@@ -34,7 +31,6 @@
           traefik.http.routers.organizr.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.organizr.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.organizr.loadbalancer.server.port: "80"
-          lazytainer.group: "organizr"
   when: organizr_enabled is true
 
 - name: Stop Organizr

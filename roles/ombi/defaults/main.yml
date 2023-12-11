@@ -8,8 +8,6 @@ ombi_config_directory: "{{ docker_home }}/ombi/config"
 # network
 ombi_port: "3579"
 ombi_hostname: "ombi"
-ombi__ports: 
-  - "{{ ombi_port }}:{{ container_ombi_port }}"
 
 # docker
 ombi_container_name: "ombi"

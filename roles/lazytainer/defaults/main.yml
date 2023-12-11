@@ -8,8 +8,8 @@ lazytainer_image_version: "master"
 lazytainer_container: "container:{{ lazytainer_container_name }}"
 
 # config
-lazytainer_inactiveTimeout: "120"
-lazytainer_minPacketThreshold: "100"
+lazytainer_inactiveTimeout: "900"
+lazytainer_minPacketThreshold: "50"
 lazytainer_pollRate: "1"
 
 # specs
@@ -18,43 +18,67 @@ lazytainer_memory: "1g"
 ###########################################################################
 ###########################################################################
 
-##
-### Jackett
-##
-
+## Lazytainer enabled applications
+lazytainer_airsonic_enabled: false
+lazytainer_bazarr_enabled: false
+lazytainer_booksonic_enabled: false
+lazytainer_calibre_enabled: false
+lazytainer_cloudcmd_enabled: false
+lazytainer_code_server_enabled: false
+lazytainer_couchpotato_enabled: false
+lazytainer_dashy_enabled: false
+lazytainer_deluge_enabled: false
+lazytainer_dockge_enabled: false
+lazytainer_dokuwiki_enabled: false
+lazytainer_duplicacy_enabled: false
+lazytainer_duplicati_enabled: false
+lazytainer_emby_enabled: false
+lazytainer_esphome_enabled: false
+lazytainer_freshrss_enabled: false
+lazytainer_gotify_enabled: false
+lazytainer_guacamole_enabled: false
+lazytainer_heimdall_enabled: false
 lazytainer_jackett_enabled: false
-
-# network
-jackett__ports: 
-  - "{{ jackett_port }}:{{ container_jackett_port }}"
-lazytainer_jackett_ports: "{{ jackett__ports if ( lazytainer_jackett_enabled is true ) else [] }}"
-
-jackett_labels:
-  lazytainer.group.jackett.ports: "{{ container_jackett_port }}"
-  lazytainer.group.jackett.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
-  lazytainer.group.jackett.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
-  lazytainer.group.jackett.pollRate: "{{ lazytainer_pollRate }}"
-lazytainer_jackett_labels: "{{ jackett_labels if ( lazytainer_jackett_enabled is true ) else {} }}"
-
-##
-### Jellyfin
-##
-
 lazytainer_jellyfin_enabled: false
+lazytainer_komga_enabled: false
+lazytainer_krusader_enabled: false
+lazytainer_lidarr_enabled: false
+lazytainer_mealie_enabled: false
+lazytainer_mylar_enabled: false
+lazytainer_n8n_enabled: false
+lazytainer_navidrome_enabled: false
+lazytainer_netdata_enabled: false
+lazytainer_nzbget_enabled: false
+lazytainer_octoprint_enabled: false
+lazytainer_ombi_enabled: false
+lazytainer_organizr_enabled: false
+lazytainer_overseerr_enabled: false
+lazytainer_piwigo_enabled: false
+lazytainer_portainer_enabled: false
+lazytainer_prowlarr_enabled: false
+lazytainer_pyload_enabled: false
+lazytainer_qbittorrent_enabled: false
+lazytainer_radarr_enabled: false
+lazytainer_rssbridge_enabled: false
+lazytainer_sabnzbd_enabled: false
+lazytainer_sickchill_enabled: false
+lazytainer_sonarr_enabled: false
+lazytainer_tiddlywiki_enabled: false
+lazytainer_transmission_enabled: false
+lazytainer_ubooquity_enabled: false
+lazytainer_unmanic_enabled: false
+lazytainer_utorrent_enabled: false
+lazytainer_wallabag_enabled: false
 
-# network
-jellyfin__ports:
-  -  "{{ jellyfin_port_http }}:{{ container_jellyfin_port_http }}"
-  - "{{ jellyfin_port_https }}:{{ container_jellyfin_port_https }}"
 
-lazytainer_jellyfin_ports: "{{ jellyfin__ports if ( lazytainer_jellyfin_enabled is true ) else [] }}"
 
-jellyfin_labels:
-  lazytainer.group.jellyfin.ports: "{{ container_jellyfin_port_http }},{{ container_jellyfin_port_https }}"
-  lazytainer.group.jellyfin.inactiveTimeout: "{{ lazytainer_inactiveTimeout }}"
-  lazytainer.group.jellyfin.minPacketThreshold: "{{ lazytainer_minPacketThreshold }}"
-  lazytainer.group.jellyfin.pollRate: "{{ lazytainer_pollRate }}" 
-lazytainer_jellyfin_labels: "{{ jellyfin_labels if ( lazytainer_jellyfin_enabled is true ) else {} }}"
 
-###########################################################################
-###########################################################################
+
+
+
+
+
+
+
+
+

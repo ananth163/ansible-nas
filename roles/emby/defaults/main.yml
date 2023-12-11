@@ -20,9 +20,6 @@ emby_group_id: "{{ gid }}"
 emby_port_http: "8096"
 emby_port_https: "8920"
 emby_hostname: "emby"
-emby__ports: 
-  - "{{ emby_port_http }}:{{ container_emby_port_http }}"
-  - "{{ emby_port_https }}:{{ container_emby_port_https }}"
 
 # specs
 emby_memory: 1g

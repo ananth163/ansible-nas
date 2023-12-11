@@ -12,8 +12,6 @@ prowlarr_group_id: "{{ gid }}"
 # network
 prowlarr_port: "9696"
 prowlarr_hostname: "prowlarr"
-prowlarr__ports: 
-  - "{{ prowlarr_port }}:{{ container_prowlarr_port }}"
 
 # docker
 prowlarr_container_name: "prowlarr"

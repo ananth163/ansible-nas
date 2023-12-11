@@ -15,8 +15,6 @@ overseerr_group_id: "1000"
 # network config
 overseerr_webui_port: "5055"
 overseerr_hostname: "overseerr"
-overseerr__ports: 
-  - "{{ overseerr_webui_port }}:{{ container_overseerr_webui_port }}"
 
 # specs
 overseerr_memory: 1g

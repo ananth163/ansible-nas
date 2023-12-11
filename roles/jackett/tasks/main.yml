@@ -16,14 +16,10 @@
           - "{{ jackett_data_directory }}:/config:rw"
           - "/etc/localtime:/etc/localtime:ro"
           - "{{ jackett_torrents_root }}:/downloads"
-        ports: >
-              {{
-                jackett__ports 
-                if lazytainer_jackett_enabled is false else [] 
-              }}  
+        ports:
+          - "{{ jackett_port }}:9117"
         env:
           TZ: "{{ ansible_nas_timezone }}"
-        network_mode: '{{ lazytainer_container if lazytainer_jackett_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ jackett_memory }}"
         labels:
@@ -33,7 +29,6 @@
           traefik.http.routers.jackett.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.jackett.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.jackett.loadbalancer.server.port: "9117"
-          lazytainer.group: "jackett"
   when: jackett_enabled is true
 
 - name: Stop Jackett

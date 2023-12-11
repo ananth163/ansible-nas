@@ -5,8 +5,6 @@ netdata_available_externally: false
 # network
 netdata_hostname: "netdata"
 netdata_port: "19999"
-netdata__ports: 
-  - "{{ netdata_port }}:{{ container_netdata_port }}"
 
 # docker
 netdata_container_name: "netdata"

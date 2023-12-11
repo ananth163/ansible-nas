@@ -14,8 +14,6 @@ lidarr_group_id: "{{ gid }}"
 # network
 lidarr_port: "8686"
 lidarr_hostname: "lidarr"
-lidarr__ports: 
-  - "{{ lidarr_port }}:{{ container_lidarr_port }}"
 
 # docker
 lidarr_container_name: "lidarr"

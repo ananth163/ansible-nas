@@ -12,8 +12,6 @@ esphome_group_id: "1000"
 # network
 esphome_hostname: "esphome"
 esphome_port: "6052"
-esphome__ports: 
-  - "{{ esphome_port }}:{{ container_esphome_port }}"
 
 # specs
 esphome_memory: 1g

@@ -10,8 +10,6 @@ sabnzbd_incomplete_directory: "{{ downloads_root }}/sabnzbd-incomplete"
 # network
 sabnzbd_port: "18080"
 sabnzbd_hostname: "sabnzbd"
-sabnzbd__ports: 
-  - "{{ sabnzbd_port }}:{{ container_sabnzbd_port }}"
 
 # specs
 sabnzbd_memory: 1g

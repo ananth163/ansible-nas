@@ -3,18 +3,12 @@
 
 - name: Start lazytainer
   block:
-    - name: Lazytainer Docker Container
-      community.docker.docker_container:
-        name: "{{ lazytainer_container_name }}"
-        image: "{{ lazytainer_image_name }}:{{ lazytainer_image_version }}"
-        pull: true
-        volumes:
-          - "/var/run/docker.sock:/var/run/docker.sock:ro"
-        ports: "{{ lazytainer_ports }}" 
-        env:
-          VERBOSE: "true"
-        memory: "{{ lazytainer_memory }}"
-        labels: "{{ lazytainer_labels }}"
+    - name: Template Docker compose config
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
+        dest: /tmp/docker-compose.yml"
+      register: lazytainer_config
+  when: lazytainer_enabled is true
 
 - name: Stop lazytainer
   block:

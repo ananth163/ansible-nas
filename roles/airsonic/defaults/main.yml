@@ -10,8 +10,6 @@ airsonic_podcasts_directory: "{{ podcasts_root }}"
 # network
 airsonic_port: "4040"
 airsonic_hostname: "airsonic"
-airsonic__ports: 
-  - "{{ airsonic_port }}:{{ container_airsonic_port }}"
 
 # specs
 airsonic_memory: 1g

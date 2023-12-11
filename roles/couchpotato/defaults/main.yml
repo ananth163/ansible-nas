@@ -14,8 +14,6 @@ couchpotato_group_id: "{{ gid }}"
 
 # network
 couchpotato_port: "5050"
-couchpotato__ports: 
-  - "{{ couchpotato_port }}:{{ container_couchpotato_port }}"
 
 # specs
 couchpotato_memory: 1g

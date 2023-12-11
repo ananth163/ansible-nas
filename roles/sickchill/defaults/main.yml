@@ -14,8 +14,6 @@ sickchill_group_id: "{{ gid }}"
 # network
 sickchill_port: "8081"
 sickchill_hostname: "sickchill"
-sickchill__ports: 
-  - "{{ sickchill_port }}:{{ container_sickchill_port }}"
 
 # docker
 sickchill_container_name: "sickchill"

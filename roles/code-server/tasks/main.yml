@@ -9,17 +9,13 @@
         volumes:
           - "{{ code_server_config_directory }}:/config"
           - "{{ code_server_projects_directory }}:/code:rw"
-        ports: >
-              {{
-                code_server__ports 
-                if lazytainer_code_server_enabled is false else [] 
-              }}
+        ports:
+          - "{{ code_server_port }}:8443"
         env:
           TZ: "{{ ansible_nas_timezone }}"
           DEFAULT_WORKSPACE: "/code"
           PUID: "{{ code_server_user_id }}"
           PGID: "{{ code_server_group_id }}"
-        network_mode: '{{ lazytainer_container if lazytainer_code_server_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ code_server_memory }}"
         labels:
@@ -29,7 +25,6 @@
           traefik.http.routers.code_server.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.code_server.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.code_server.loadbalancer.server.port: "8443"
-          lazytainer.group: "code_server"
   when: code_server_enabled is true
 
 - name: Stop Code Server

@@ -14,8 +14,7 @@ unmanic_group_id: "{{ gid }}"
 # network
 unmanic_port: "8888"
 unmanic_hostname: "unmanic"
-unmanic__ports: 
-  - "{{ unmanic_port }}:{{ container_unmanic_port }}"
+
 
 # docker
 unmanic_container_name: "unmanic"

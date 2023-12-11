@@ -13,11 +13,8 @@
         name: "{{ duplicati_container_name }}"
         image: linuxserver/duplicati
         pull: true
-        ports: >
-              {{
-                duplicati__ports 
-                if lazytainer_duplicati_enabled is false else [] 
-              }}
+        ports:
+          - "{{ duplicati_port }}:8200"
         volumes:
           - "{{ duplicati_data_directory }}:/config:rw"
           - "{{ samba_shares_root }}:/source/shares:{{ duplicati_data_permissions }}"
@@ -27,7 +24,6 @@
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ duplicati_user_id }}"
           PGID: "{{ duplicati_group_id }}"
-        network_mode: '{{ lazytainer_container if lazytainer_duplicati_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ duplicati_memory }}"
         labels:
@@ -37,7 +33,6 @@
           traefik.http.routers.duplicati.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.duplicati.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.duplicati.loadbalancer.server.port: "8200"
-          lazytainer.group: "duplicati"
   when: duplicati_enabled is true
 
 - name: Stop Duplicati

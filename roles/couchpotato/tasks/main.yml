@@ -19,16 +19,12 @@
           - "{{ couchpotato_downloads_directory }}:/downloads:rw"
           - "{{ couchpotato_movies_directory }}:/movies:rw"
           - "{{ couchpotato_torrents_directory }}:/torrents:rw"
-        ports: >
-              {{
-                couchpotato__ports 
-                if lazytainer_couchpotato_enabled is false else [] 
-              }}
+        ports:
+          - "{{ couchpotato_port }}:5050"
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ couchpotato_user_id }}"
           PGID: "{{ couchpotato_group_id }}"
-        network_mode: '{{ lazytainer_container if lazytainer_couchpotato_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ couchpotato_memory }}"
         labels:
@@ -38,7 +34,6 @@
           traefik.http.routers.couchpotato.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.couchpotato.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.couchpotato.loadbalancer.server.port: "5050"
-          lazytainer.group: "couchpotato"
   when: couchpotato_enabled is true
 
 - name: Stop Couchpotato

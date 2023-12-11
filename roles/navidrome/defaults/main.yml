@@ -9,8 +9,6 @@ navidrome_music_directory: "{{ music_root }}"
 # network
 navidrome_port: "4533"
 navidrome_hostname: "navidrome"
-navidrome__ports: 
-  - "{{ navidrome_port }}:{{ container_navidrome_port }}"
 
 # docker
 navidrome_container_name: "navidrome"

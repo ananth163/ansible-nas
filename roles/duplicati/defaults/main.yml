@@ -15,8 +15,6 @@ duplicati_group_id: "0"
 # network
 duplicati_port: "8200"
 duplicati_hostname: "duplicati"
-duplicati__ports: 
-  - "{{ duplicati_port }}:{{ container_duplicati_port }}"
 
 duplicati_memory: 1g
 

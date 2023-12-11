@@ -19,11 +19,10 @@
           - "{{ utorrent_download_directory }}:/data:rw"
           - "{{ utorrent_config_directory }}:/utorrent/settings:rw"
           - "{{ torrents_root }}:/utorrent/torrents:rw"
-        ports: >
-              {{
-                utorrent__ports 
-                if lazytainer_utorrent_enabled is false else [] 
-              }}
+        ports:
+          - "{{ utorrent_port_http }}:8080"
+          - "{{ utorrent_port_bt }}:6881"
+          - "{{ utorrent_port_bt }}:6881/udp"
         env:
           TZ: "{{ ansible_nas_timezone }}"
           UID: "{{ utorrent_user_id }}"
@@ -31,7 +30,6 @@
           webui: "ng"
           dir_active: "/data/.incomplete"
           dir_completed: "/data"
-        network_mode: '{{ lazytainer_container if lazytainer_utorrent_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ utorrent_memory }}"
         labels:
@@ -41,7 +39,6 @@
           traefik.http.routers.utorrent.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.utorrent.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.utorrent.loadbalancer.server.port: "8080"
-          lazytainer.group: "utorrent"
   when: utorrent_enabled is true
 
 - name: Stop uTorrent

@@ -16,17 +16,13 @@
         pull: true
         volumes:
           - "{{ overseerr_data_directory }}/config:/app/config:rw"
-        ports: >
-              {{
-                overseerr__ports 
-                if lazytainer_overseerr_enabled is false else [] 
-              }}
+        ports:
+          - "{{ overseerr_webui_port }}:5055"
         env:
           TZ: "{{ ansible_nas_timezone }}"
           PUID: "{{ overseerr_user_id }}"
           PGID: "{{ overseerr_group_id }}"
         restart_policy: unless-stopped
-        network_mode: '{{ lazytainer_container if lazytainer_overseerr_enabled is true else omit }}'
         memory: "{{ overseerr_memory }}"
         labels:
           traefik.enable: "{{ overseerr_available_externally | string }}"
@@ -35,7 +31,6 @@
           traefik.http.routers.overseerr.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.overseerr.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.overseerr.loadbalancer.server.port: "5055"
-          lazytainer.group: "overseerr"
   when: overseerr_enabled is true
 
 - name: Stop Overseerr

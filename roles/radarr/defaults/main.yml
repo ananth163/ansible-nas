@@ -14,8 +14,6 @@ radarr_group_id: "{{ gid }}"
 # network
 radarr_port: "7878"
 radarr_hostname: "radarr"
-radarr__ports: 
-  - "{{ radarr_port }}:{{ container_radarr_port }}"
 
 # docker
 radarr_container_name: "radarr"

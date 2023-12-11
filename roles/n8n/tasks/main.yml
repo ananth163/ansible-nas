@@ -13,15 +13,11 @@
         name: "{{ n8n_container_name }}"
         image: "{{ n8n_image_name }}:{{ n8n_image_version }}"
         pull: true
-        ports: >
-              {{
-                n8n__ports 
-                if lazytainer_n8n_enabled is false else [] 
-              }}
+        ports:
+          - "{{ n8n_port }}:5678"
         volumes:
           - "{{ n8n_data_directory }}:/home/node/.n8n:rw"
           - "/etc/timezone:/etc/timezone:ro"
-        network_mode: '{{ lazytainer_container if lazytainer_n8n_enabled is true else omit }}'
         restart_policy: unless-stopped
         memory: "{{ n8n_memory }}"
         env:
@@ -35,7 +31,6 @@
           traefik.http.routers.n8n.tls.domains[0].main: "{{ ansible_nas_domain }}"
           traefik.http.routers.n8n.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
           traefik.http.services.n8n.loadbalancer.server.port: "5678"
-          lazytainer.group: "n8n"
   when: n8n_enabled is true
 
 - name: Stop n8n
