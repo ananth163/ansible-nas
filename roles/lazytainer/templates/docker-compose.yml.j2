@@ -29,7 +29,7 @@ services:
       environment:
         - PUID={{ uid }}
         - PGID={{ gid }}
-        - TZ=Asia/Calcutta
+        - TZ={{ ansible_nas_timezone }}
       network_mode: service:lazytainer
       labels:
         - lazytainer.group=airsonic
@@ -37,22 +37,402 @@ services:
         - lazytainer
 {% endif %}
 
-{% if lazytainer_jellyfin_enabled %}    
-    jellyfin:
-      image: lscr.io/linuxserver/jellyfin:latest
-      container_name: jellyfin
+{% if lazytainer_bazarr_enabled %}    
+    bazarr:
+      image: linuxserver/bazarr:latest
+      container_name: {{ bazarr_container_name }}
       restart: unless-stopped
       volumes:
-        - /mnt/local/docker/jellyfin/config:/config:rw
-        - /mnt/local/Media/TV:/data/tvshows:rw
-        - /mnt/local/Media/Movies:/data/movies:rw
+        - {{ bazarr_tv_directory }}:/tv:rw
+        - {{ bazarr_movies_directory }}:/movies:rw
+        - {{ bazarr_data_directory }}:/config:rw
       environment:
-        - PUID=998
-        - PGID=1001
-        - TZ=Asia/Calcutta
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=bazarr
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_booksonic_enabled %}    
+    booksonic:
+      image: linuxserver/booksonic-air:latest
+      container_name: {{ booksonic_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ booksonic_data_directory }}/data:/booksonic/data:rw
+        - {{ booksonic_data_directory }}/playlists:/booksonic/playlists:rw
+        - {{ booksonic_audiobooks_directory }}:/booksonic/audiobooks:rw
+        - {{ booksonic_podcasts_directory }}:/booksonic/podcasts:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=booksonic
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_calibre_enabled %}    
+    calibre:
+      image: linuxserver/calibre-web:latest
+      container_name: {{ calibre_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ calibre_data_directory }}/config:/config
+        - {{ calibre_books_root }}:/books
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+        - DOCKER_MODS={{ calibre_ebook_conversion }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=calibre
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_couchpotato_enabled %}    
+    couchpotato:
+      image: linuxserver/couchpotato
+      container_name: {{ couchpotato_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ couchpotato_config_directory }}:/config:rw
+        - {{ couchpotato_downloads_directory }}:/downloads:rw
+        - {{ couchpotato_movies_directory }}:/movies:rw
+        - {{ couchpotato_torrents_directory }}:/torrents:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=couchpotato
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_deluge_enabled %}    
+    deluge:
+      image: linuxserver/deluge
+      container_name: deluge
+      restart: unless-stopped
+      volumes:
+        - {{ deluge_config_directory }}:/config:rw
+        - {{ deluge_download_directory }}:/downloads:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=deluge
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_emby_enabled %}    
+    emby:
+      image: emby/embyserver
+      container_name: {{ emby_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ emby_config_directory }}:/config:rw
+        - {{ emby_movies_directory }}:/movies:{{ emby_movies_permissions }}
+        - {{ emby_tv_directory }}:/tv:{{ emby_tv_permissions }}
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=emby
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_freshrss_enabled %}    
+    freshrss:
+      image: {{ freshrss_image_name }}:{{ freshrss_image_version }}
+      container_name: {{ freshrss_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ freshrss_data_directory }}/data:/var/www/FreshRSS/data:rw
+        - {{ freshrss_extensions_directory }}/extensions:/var/www/FreshRSS/extensions:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+        - CRON_MIN=1,31
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=freshrss
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_gotify_enabled %}    
+    gotify:
+      image: {{ gotify_image_name }}:{{ gotify_image_version }}
+      container_name: {{ gotify_container_name }}
+      restart: unless-stopped
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - {{ gotify_data_directory }}:/app/data:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=gotify
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_jackett_enabled %}    
+    jackett:
+      image: {{ jackett_image_name }}:{{ jackett_image_version }}
+      container_name: {{ jackett_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ jackett_data_directory }}:/config:rw
+        - /etc/localtime:/etc/localtime:ro
+        - {{ jackett_torrents_root }}:/downloads
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=jackett
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_jellyfin_enabled %}    
+    jellyfin:
+      image: {{ jellyfin_image_name }}:{{ jellyfin_image_version }}
+      container_name: {{ jellyfin_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ jellyfin_config_directory }}:/config:rw
+        - {{ jellyfin_movies_directory }}:/movies:{{ jellyfin_movies_permissions }}
+        - {{ jellyfin_music_directory }}:/music:{{ jellyfin_music_permissions }}
+        - {{ jellyfin_photos_directory }}:/photos:{{ jellyfin_photos_permissions }}
+        - {{ jellyfin_tv_directory }}:/tv:{{ jellyfin_tv_permissions }}
+        - {{ jellyfin_books_directory }}:/books:{{ jellyfin_books_permissions }}
+        - {{ jellyfin_audiobooks_directory }}:/audiobooks:{{ jellyfin_audiobooks_permissions }}
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
       network_mode: service:lazytainer
       labels:
         - lazytainer.group=jellyfin
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_komga_enabled %}    
+    komga:
+      image: {{ komga_image_name }}:{{ komga_image_version }}
+      container_name: {{ komga_container_name }}
+      restart: unless-stopped
+      volumes:
+        - {{ komga_comics_directory }}:/comics:ro
+        - {{ komga_books_directory }}:/books:ro
+        - {{ komga_data_directory }}:/data:rw
+        - {{ komga_data_directory }}/config:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=komga
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_lidarr_enabled %}    
+    lidarr:
+      image: {{ lidarr_image_name }}:{{ lidarr_image_version }}
+      container_name: {{ lidarr_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ lidarr_music_directory }}:/music:rw
+         - {{ lidarr_downloads_directory }}:/downloads:rw
+         - {{ lidarr_data_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=lidarr
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_mylar_enabled %}    
+    mylar:
+      image: {{ mylar_image_name }}:{{ mylar_image_version }}
+      container_name: {{ mylar_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ mylar_comics_directory }}:/comics:rw
+         - {{ mylar_downloads_directory }}:/downloads:rw
+         - {{ mylar_data_directory }}/config:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=mylar
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_navidrome_enabled %}    
+    navidrome:
+      image: {{ navidrome_image_name }}:{{ navidrome_image_version }}
+      container_name: {{ navidrome_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ navidrome_data_directory }}/data:/navidrome/data:rw
+         - {{ navidrome_music_directory }}:/navidrome/music:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+        - ND_MUSICFOLDER=/navidrome/music
+        - ND_DATAFOLDER=/navidrome/data
+        - ND_SCANSCHEDULE={{ navidrome_scan_schedule }}
+        - ND_LOGLEVEL={{ navidrome_log_level }}
+        - ND_SESSIONTIMEOUT={{ navidrome_session_timeout }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=navidrome
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_nzbget_enabled %}    
+    nzbget:
+      image: {{ nzbget_image_name }}:{{ nzbget_image_version }}
+      container_name: {{ nzbget_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ nzbget_download_directory }}:/downloads:rw
+         - {{ nzbget_data_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=nzbget
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_ombi_enabled %}    
+    ombi:
+      image: {{ ombi_image_name }}:{{ ombi_image_version }}
+      container_name: {{ ombi_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ ombi_config_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=ombi
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_overseerr_enabled %}    
+    overseerr:
+      image: {{ overseerr_image_name }}:{{ overseerr_image_version }}
+      container_name: {{ overseerr_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ overseerr_data_directory }}/config:/app/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=overseerr
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_portainer_enabled %}    
+    portainer:
+      image: {{ portainer_image_name }}:{{ portainer_image_version }}
+      container_name: {{ portainer_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ portainer_data_directory }}:/data:rw
+         - /var/run/docker.sock:/var/run/docker.sock:ro
+         - /etc/timezone:/etc/timezone:ro
+      environment:
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=portainer
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_prowlarr_enabled %}    
+    prowlarr:
+      image: {{ prowlarr_image_name }}:{{ prowlarr_image_version }}
+      container_name: {{ prowlarr_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ prowlarr_data_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=prowlarr
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_qbittorrent_enabled %}    
+    prowlarr:
+      image: {{ qbittorrent_image_name }}:{{ qbittorrent_image_version }}
+      container_name: {{ qbittorrent_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ qbittorrent_config_directory }}:/config:rw
+         - {{ qbittorrent_download_directory }}:/downloads:rw
+         - {{ qbittorrent_watch_directory }}:/watch:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=qbittorrent
       depends_on:
         - lazytainer
 {% endif %}

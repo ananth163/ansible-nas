@@ -6,7 +6,7 @@
     - name: Template Docker compose config
       ansible.builtin.template:
         src: docker-compose.yml.j2
-        dest: /tmp/docker-compose.yml"
+        dest: /tmp/docker-compose.yml
       register: lazytainer_config
   when: lazytainer_enabled is true
 
