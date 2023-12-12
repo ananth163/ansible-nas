@@ -240,6 +240,7 @@ container_timemachine_port: "445"
 ######transmission
 container_transmission_external_port: "51413"
 container_transmission_external_port_udp: "51413/udp"
+container_transmission_webui_port: "9091"
 container_transmission_openvpn_proxy_port: "3128"
 container_transmission_openvpn_webui_port: "9091"
 

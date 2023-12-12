@@ -859,7 +859,7 @@ services:
       container_name: {{ utorrent_container_name }}
       restart: unless-stopped
       volumes:
-         - {{ uorent_download_directory }}:/data:rw
+         - {{ utorrent_download_directory }}:/data:rw
          - {{ utorrent_config_directory }}:/utorrent/settings:rw
          - {{ torrents_root }}:/utorrent/torrents:rw
       environment:

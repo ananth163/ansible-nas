@@ -7,7 +7,13 @@
       ansible.builtin.template:
         src: docker-compose.yml.j2
         dest: /tmp/docker-compose.yml
-      register: lazytainer_config
+
+    - name: Run container
+      become: True
+      ansible.builtin.shell:
+        cmd: "docker-compose -f docker-compose.yml up -d"
+        chdir: /tmp
+
   when: lazytainer_enabled is true
 
 - name: Stop lazytainer

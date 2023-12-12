@@ -7,6 +7,7 @@
         state: directory
       with_items:
         - "{{ dockge_data_directory }}"
+        - "{{ dockge_stacks_directory }}"
 
     - name: Dockge Docker Container for external
       community.docker.docker_container:
@@ -20,12 +21,8 @@
           - "/etc/timezone:/etc/timezone:ro"
         env:
           DOCKGE_STACKS_DIR: "{{ dockge_stacks_directory }}"
-        ports: >
-              {{
-                dockge__ports 
-                if lazytainer_dockge_enabled is false else [] 
-              }}
-        network_mode: '{{ lazytainer_container if lazytainer_dockge_enabled is true else omit }}'
+        ports: 
+          - "{{ dockge_port }}:{{ container_dockge_port }}"
         restart_policy: unless-stopped
         memory: "{{ dockge_memory }}"
         labels:
@@ -37,7 +34,19 @@
           traefik.http.services.dockge.loadbalancer.server.port: "9443"
           traefik.http.routers.dockge.middlewares: "dockge-ipwhitelist@docker"
           traefik.http.middlewares.dockge-ipwhitelist.ipwhitelist.sourcerange: "{{ dockge_ip_whitelist }}"
-          lazytainer.group: "dockge"
+    
+    - name: Check that Docker compose file exists
+      ansible.builtin.stat:
+        path: /tmp/docker-compose.yml
+      register: stat_result
+
+    - name: Copy Docker compose to Stacks directory if it exists
+      ansible.builtin.copy:
+        path: "/tmp/docker-compose.yml"
+        dest: "{{ dockge_stacks_directory }}/docker-compose.yml"
+      delegate_to: localhost
+      when: stat_result.stat.exists
+
   when: dockge_enabled is true
 
 - name: Stop Dockge
