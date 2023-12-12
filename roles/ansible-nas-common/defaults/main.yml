@@ -2,6 +2,7 @@
 # Extra packages to install
 ansible_nas_extra_packages:
   - docker-ctop
+  - docker-compose
   - htop
   - curl
   - ripgrep
