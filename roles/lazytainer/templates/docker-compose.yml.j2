@@ -1,20 +1,293 @@
 version: "3.8"
 services:
   lazytainer:
-    container_name: lazytainer
-    image: ghcr.io/vmorganp/lazytainer:master
+    container_name: {{ lazytainer_container_name }}
+    image: {{ lazytainer_image_name }}:{{ lazytainer_image_version }}
     environment:
       - VERBOSE=true
     ports:
-      - 8096:8096
-      - 8920:8920
+{% if lazytainer_airsonic_enabled %} 
+      - {{ airsonic_port }}:{{ container_airsonic_port }}
+{% endif %}
+{% if lazytainer_bazarr_enabled %}
+      - {{ bazarr_port }}:{{ container_bazarr_port }}
+{% endif %}
+{% if lazytainer_booksonic_enabled %}
+      - {{ booksonic_port }}:{{ container_booksonic_port }}
+{% endif %}
+{% if lazytainer_calibre_enabled %}
+      - {{ calibre_port }}:{{ container_calibre_port }}
+{% endif %}
+{% if lazytainer_couchpotato_enabled %}
+      - {{ couchpotato_port }}:{{ container_couchpotato_port }}
+{% endif %}
+{% if lazytainer_deluge_enabled %}
+      - {{ deluge_port }}:{{ container_deluge_port }}
+{% endif %}
+{% if lazytainer_emby_enabled %}
+      - {{ emby_port_http }}:{{ container_emby_port_http }}
+      - {{ emby_port_https }}:{{ container_emby_port_https }}
+{% endif %}
+{% if lazytainer_freshrss_enabled %}
+      - {{ freshrss_port }}:{{ container_freshrss_port }}
+{% endif %}
+{% if lazytainer_gotify_enabled %}
+      - {{ gotify_port }}:{{ container_gotify_port }}
+{% endif %}
+{% if lazytainer_jackett_enabled %}
+      - {{ jackett_port }}:{{ container_jackett_port }}
+{% endif %}
+{% if lazytainer_jellyfin_enabled %}
+      - {{ jellyfin_port_http }}:{{ container_jellyfin_port_http }}
+      - {{ jellyfin_port_https }}:{{ container_jellyfin_port_https }}
+{% endif %}
+{% if lazytainer_komga_enabled %}
+      - {{ komga_port_http }}:{{ container_komga_port_http }}
+{% endif %}
+{% if lazytainer_lidarr_enabled %}
+      - {{ lidarr_port }}:{{ container_lidarr_port }}
+{% endif %}
+{% if lazytainer_mylar_enabled %}
+      - {{ mylar_port_http }}:{{ container_mylar_port_http }}
+{% endif %}
+{% if lazytainer_navidrome_enabled %}
+      - {{ navidrome_port }}:{{ container_navidrome_port }}
+{% endif %}
+{% if lazytainer_nzbget_enabled %}
+      - {{ nzbget_port }}:{{ container_nzbget_port }}
+{% endif %}
+{% if lazytainer_ombi_enabled %}
+      - {{ ombi_port }}:{{ container_ombi_port }}
+{% endif %}
+{% if lazytainer_overseerr_enabled %}
+      - {{ overseerr_webui_port }}:{{ container_overseerr_webui_port }}
+{% endif %}
+{% if lazytainer_portainer_enabled %}
+      - {{ portainer_port }}:{{ container_portainer_port }}
+{% endif %}
+{% if lazytainer_prowlarr_enabled %}
+      - {{ prowlarr_port }}:{{ container_prowlarr_port }}
+{% endif %}
+{% if lazytainer_qbittorrent_enabled %}
+      - {{ qbittorrent_webui_port }}:{{ container_qbittorrent_webui_port }}
+      - {{ qbittorrent_external_port }}:{{ container_qbittorrent_external_port }}
+      - {{ qbittorrent_external_port_udp }}:{{ container_qbittorrent_external_port_udp }}
+{% endif %}
+{% if lazytainer_radarr_enabled %}
+      - {{ radarr_port }}:{{ container_radarr_port }}
+{% endif %}
+{% if lazytainer_sabnzbd_enabled %}
+      - {{ sabnzbd_port }}:{{ container_sabnzbd_port }}
+{% endif %}
+{% if lazytainer_sickchill_enabled %}
+      - {{ sickchill_port }}:{{ container_sickchill_port }}
+{% endif %}
+{% if lazytainer_sonarr_enabled %}
+      - {{ sonarr_port }}:{{ container_sonarr_port }}
+{% endif %}
+{% if lazytainer_transmission_enabled %}
+      - {{ transmission_webui_port }}:{{ container_transmission_webui_port }}
+      - {{ transmission_external_port }}:{{ container_transmission_external_port }}
+      - {{ transmission_external_port_udp }}:{{ container_transmission_external_port_udp }}
+{% endif %}
+{% if lazytainer_ubooquity_enabled %}
+      - {{ ubooquity_port_webui }}:{{ container_ubooquity_port_webui }}
+      - {{ ubooquity_port_admin }}:{{ container_ubooquity_port_admin }}
+{% endif %}
+{% if lazytainer_unmanic_enabled %}
+      - {{ unmanic_port }}:{{ container_unmanic_port }}
+{% endif %}
+{% if lazytainer_utorrent_enabled %}
+      - {{ utorrent_port_http }}:{{ container_utorrent_port_http }}
+      - {{ utorrent_port_bt }}:{{ container_utorrent_port_bt }}
+      - {{ utorrent_port_bt_udp }}:{{ container_utorrent_port_bt_udp }}
+{% endif %}
+{% if lazytainer_wallabag_enabled %}
+      - {{ wallabag_port }}:{{ container_wallabag_port }}
+{% endif %}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
-      - lazytainer.group.jellyfin.ports=8096,8920
-      - lazytainer.group.jellyfin.inactiveTimeout=120
-      - lazytainer.group.jellyfin.minPacketThreshold=500
-      - lazytainer.group.jellyfin.pollRate=1
+{% if lazytainer_airsonic_enabled %}
+      - lazytainer.group.airsonic.ports={{ container_airsonic_port }}
+      - lazytainer.group.airsonic.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.airsonic.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.airsonic.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_bazarr_enabled %}
+      - lazytainer.group.bazarr.ports={{ container_bazarr_port }}
+      - lazytainer.group.bazarr.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.bazarr.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.bazarr.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_booksonic_enabled %}
+      - lazytainer.group.booksonic.ports={{ container_booksonic_port }}
+      - lazytainer.group.booksonic.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.booksonic.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.booksonic.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_calibre_enabled %}
+      - lazytainer.group.calibre.ports={{ container_calibre_port }}
+      - lazytainer.group.calibre.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.calibre.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.calibre.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_couchpotato_enabled %}
+      - lazytainer.group.couchpotato.ports={{ container_couchpotato_port }}
+      - lazytainer.group.couchpotato.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.couchpotato.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.couchpotato.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_deluge_enabled %}
+      - lazytainer.group.deluge.ports={{ container_deluge_port }}
+      - lazytainer.group.deluge.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.deluge.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.deluge.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_emby_enabled %}
+      - lazytainer.group.emby.ports={{ container_emby_port_http }},{{ container_emby_port_https }}
+      - lazytainer.group.emby.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.emby.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.emby.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_freshrss_enabled %}
+      - lazytainer.group.freshrss.ports={{ container_freshrss_port }}
+      - lazytainer.group.freshrss.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.freshrss.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.freshrss.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_gotify_enabled %}
+      - lazytainer.group.gotify.ports={{ container_gotify_port }}
+      - lazytainer.group.gotify.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.gotify.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.gotify.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_jackett_enabled %}
+      - lazytainer.group.jackett.ports={{ container_jackett_port }}
+      - lazytainer.group.jackett.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.jackett.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.jackett.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_jellyfin_enabled %}
+      - lazytainer.group.jellyfin.ports={{ container_jellyfin_port_http }},{{ container_jellyfin_port_https }}
+      - lazytainer.group.jellyfin.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.jellyfin.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.jellyfin.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_komga_enabled %}
+      - lazytainer.group.komga.ports={{ container_komga_port_http }}
+      - lazytainer.group.komga.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.komga.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.komga.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_lidarr_enabled %}
+      - lazytainer.group.lidarr.ports={{ container_lidarr_port }}
+      - lazytainer.group.lidarr.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.lidarr.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.lidarr.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_mylar_enabled %}
+      - lazytainer.group.mylar.ports={{ container_mylar_port_http }}
+      - lazytainer.group.mylar.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.mylar.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.mylar.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_navidrome_enabled %}
+      - lazytainer.group.navidrome.ports={{ container_navidrome_port }}
+      - lazytainer.group.navidrome.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.navidrome.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.navidrome.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_nzbget_enabled %}
+      - lazytainer.group.nzbget.ports={{ container_nzbget_port }}
+      - lazytainer.group.nzbget.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.nzbget.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.nzbget.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_ombi_enabled %}
+      - lazytainer.group.ombi.ports={{ container_ombi_port }}
+      - lazytainer.group.ombi.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.ombi.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.ombi.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_overseerr_enabled %}
+      - lazytainer.group.overseerr.ports={{ container_overseerr_webui_port }}
+      - lazytainer.group.overseerr.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.overseerr.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.overseerr.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_portainer_enabled %}
+      - lazytainer.group.portainer.ports={{ container_portainer_port }}
+      - lazytainer.group.portainer.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.portainer.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.portainer.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_prowlarr_enabled %}
+      - lazytainer.group.prowlarr.ports={{ container_prowlarr_port }}
+      - lazytainer.group.prowlarr.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.prowlarr.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.prowlarr.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_qbittorrent_enabled %}
+      - lazytainer.group.qbittorrent.ports={{ container_qbittorrent_webui_port }},{{ container_qbittorrent_external_port }},{{ container_qbittorrent_external_port_udp }}
+      - lazytainer.group.qbittorrent.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.qbittorrent.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.qbittorrent.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_radarr_enabled %}
+      - lazytainer.group.radarr.ports={{ container_radarr_port }}
+      - lazytainer.group.radarr.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.radarr.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.radarr.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_sabnzbd_enabled %}
+      - lazytainer.group.sabnzbd.ports={{ container_sabnzbd_port }}
+      - lazytainer.group.sabnzbd.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.sabnzbd.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.sabnzbd.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_sickchill_enabled %}
+      - lazytainer.group.sickchill.ports={{ container_sickchill_port }}
+      - lazytainer.group.sickchill.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.sickchill.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.sickchill.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_sonarr_enabled %}
+      - lazytainer.group.sonarr.ports={{ container_sonarr_port }}
+      - lazytainer.group.sonarr.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.sonarr.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.sonarr.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_transmission_enabled %}
+      - lazytainer.group.transmission.ports={{ container_transmission_webui_port }},{{ container_transmission_external_port }},{{ container_transmission_external_port_udp }}
+      - lazytainer.group.transmission.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.transmission.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.transmission.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_ubooquity_enabled %}
+      - lazytainer.group.ubooquity.ports={{ container_ubooquity_port_webui }},{{ container_ubooquity_port_admin }}
+      - lazytainer.group.ubooquity.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.ubooquity.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.ubooquity.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_unmanic_enabled %}
+      - lazytainer.group.unmanic.ports={{ container_unmanic_port }}
+      - lazytainer.group.unmanic.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.unmanic.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.unmanic.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_utorrent_enabled %}
+      - lazytainer.group.utorrent.ports={{ container_utorrent_port_http }},{{ container_utorrent_port_bt }},{{ container_utorrent_port_bt_udp }}
+      - lazytainer.group.utorrent.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.utorrent.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.utorrent.pollRate={{ lazytainer_pollRate }}
+{% endif %}
+{% if lazytainer_wallabag_enabled %}
+      - lazytainer.group.wallabag.ports={{ container_wallabag_port }}
+      - lazytainer.group.wallabag.inactiveTimeout={{ lazytainer_inactiveTimeout }}
+      - lazytainer.group.wallabag.minPacketThreshold={{ lazytainer_minPacketThreshold }}
+      - lazytainer.group.wallabag.pollRate={{ lazytainer_pollRate }}
+{% endif %}
 
 {% if lazytainer_airsonic_enabled %}    
     airsonic:
@@ -418,7 +691,7 @@ services:
 {% endif %}
 
 {% if lazytainer_qbittorrent_enabled %}    
-    prowlarr:
+    qbittorrent:
       image: {{ qbittorrent_image_name }}:{{ qbittorrent_image_version }}
       container_name: {{ qbittorrent_container_name }}
       restart: unless-stopped
@@ -430,9 +703,193 @@ services:
         - PUID={{ uid }}
         - PGID={{ gid }}
         - TZ={{ ansible_nas_timezone }}
+        - WEBUI_PORT={{ qbittorrent_webui_port }}
       network_mode: service:lazytainer
       labels:
         - lazytainer.group=qbittorrent
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_radarr_enabled %}    
+    radarr:
+      image: {{ radarr_image_name }}:{{ radarr_image_version }}
+      container_name: {{ radarr_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ radarr_movies_directory }}:/movies:rw
+         - {{ radarr_download_directory }}:/downloads:rw
+         - {{ radarr_data_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=radarr
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_sabnzbd_enabled %}    
+    sabnzbd:
+      image: {{ sabnzbd_image_name }}:{{ sabnzbd_image_version }}
+      container_name: {{ sabnzbd_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ sabnzbd_data_directory }}:/config:rw
+         - {{ sabnzbd_downloads_directory }}:/downloads
+         - {{ sabnzbd_incomplete_directory }}:/incomplete-downloads
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=sabnzbd
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_sickchill_enabled %}    
+    sickchill:
+      image: {{ sickchill_image_name }}:{{ sickchill_image_version }}
+      container_name: {{ sickchill_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ sickchill_config_directory }}:/config:rw
+         - {{ sickchill_downloads_directory }}:/downloads:rw
+         - {{ sickchill_tv_directory }}:/tv:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=sickchill
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_sonarr_enabled %}    
+    sonarr:
+      image: {{ sonarr_image_name }}:{{ sonarr_image_version }}
+      container_name: {{ sonarr_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ sonarr_tv_directory }}:/tv:rw
+         - {{ sonarr_download_directory }}:/downloads:rw
+         - {{ sonarr_data_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=sonarr
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_transmission_enabled %}    
+    transmission:
+      image: {{ transmission_image_name }}:{{ transmission_image_version }}
+      container_name: {{ transmission_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ transmission_config_directory }}:/config:rw
+         - {{ transmission_download_directory }}:/downloads:rw
+         - {{ transmission_watch_directory }}:/watch:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=transmission
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_ubooquity_enabled %}    
+    ubooquity:
+      image: {{ ubooquity_image_name }}:{{ ubooquity_image_version }}
+      container_name: {{ ubooquity_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ ubooquity_data_directory }}/config:/config:rw
+         - {{ ubooquity_data_directory }}/files:/files:rw
+         - {{ comics_root }}:/comics
+         - {{ books_root }}:/books
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+        - MAXMEM=1024
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=ubooquity
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_unmanic_enabled %}    
+    unmanic:
+      image: {{ unmanic_image_name }}:{{ unmanic_image_version }}
+      container_name: {{ unmanic_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ unmanic_download_directory }}:/library:rw
+         - {{ unmanic_cache_directory }}:/tmp/unmanic:rw
+         - {{ unmanic_data_directory }}:/config:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=unmanic
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_utorrent_enabled %}    
+    utorrent:
+      image: {{ utorrent_image_name }}:{{ utorrent_image_version }}
+      container_name: {{ utorrent_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ uorent_download_directory }}:/data:rw
+         - {{ utorrent_config_directory }}:/utorrent/settings:rw
+         - {{ torrents_root }}:/utorrent/torrents:rw
+      environment:
+        - PUID={{ uid }}
+        - PGID={{ gid }}
+        - TZ={{ ansible_nas_timezone }}
+        - webui=ng
+        - dir_active=/data/.incomplete
+        - dir_completed=/data
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=utorrent
+      depends_on:
+        - lazytainer
+{% endif %}
+
+{% if lazytainer_wallabag_enabled %}    
+    wallabag:
+      image: {{ wallabag_image_name }}:{{ wallabag_image_version }}
+      container_name: {{ wallabag_container_name }}
+      restart: unless-stopped
+      volumes:
+         - {{ wallabag_data_directory }}/data:/var/www/wallabag/data:rw
+         - {{ wallabag_data_directory }}/images:/var/www/wallabag/web/assets/images:rw
+      environment:
+        - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.{{ ansible_nas_domain }}
+        - TZ={{ ansible_nas_timezone }}
+      network_mode: service:lazytainer
+      labels:
+        - lazytainer.group=wallabag
       depends_on:
         - lazytainer
 {% endif %}

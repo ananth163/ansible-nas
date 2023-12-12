@@ -1,11 +1,11 @@
 ---
-lazytainer_enabled: false
+lazytainer_enabled: true
 
 # docker
 lazytainer_container_name: "lazytainer"
 lazytainer_image_name: "ghcr.io/vmorganp/lazytainer"
 lazytainer_image_version: "master"
-lazytainer_container: "container:{{ lazytainer_container_name }}"
+
 
 # config
 lazytainer_inactiveTimeout: "900"
@@ -19,37 +19,36 @@ lazytainer_memory: "1g"
 ###########################################################################
 
 ## Lazytainer enabled applications
-lazytainer_airsonic_enabled: false
-lazytainer_bazarr_enabled: false
-lazytainer_booksonic_enabled: false
-lazytainer_calibre_enabled: false
-lazytainer_couchpotato_enabled: false
-lazytainer_deluge_enabled: false
-lazytainer_emby_enabled: false
-lazytainer_freshrss_enabled: false
-lazytainer_gotify_enabled: false
-lazytainer_jackett_enabled: false
-lazytainer_jellyfin_enabled: false
-lazytainer_komga_enabled: false
-lazytainer_lidarr_enabled: false
-lazytainer_mylar_enabled: false
-lazytainer_navidrome_enabled: false
-lazytainer_nzbget_enabled: false
-lazytainer_ombi_enabled: false
-lazytainer_overseerr_enabled: false
-lazytainer_portainer_enabled: false
-lazytainer_prowlarr_enabled: false
-
-lazytainer_qbittorrent_enabled: false
-lazytainer_radarr_enabled: false
-lazytainer_sabnzbd_enabled: false
-lazytainer_sickchill_enabled: false
-lazytainer_sonarr_enabled: false
-lazytainer_transmission_enabled: false
-lazytainer_ubooquity_enabled: false
-lazytainer_unmanic_enabled: false
-lazytainer_utorrent_enabled: false
-lazytainer_wallabag_enabled: false
+lazytainer_airsonic_enabled: true
+lazytainer_bazarr_enabled: true
+lazytainer_booksonic_enabled: true
+lazytainer_calibre_enabled: true
+lazytainer_couchpotato_enabled: true
+lazytainer_deluge_enabled: true
+lazytainer_emby_enabled: true
+lazytainer_freshrss_enabled: true
+lazytainer_gotify_enabled: true
+lazytainer_jackett_enabled: true
+lazytainer_jellyfin_enabled: true
+lazytainer_komga_enabled: true
+lazytainer_lidarr_enabled: true
+lazytainer_mylar_enabled: true
+lazytainer_navidrome_enabled: true
+lazytainer_nzbget_enabled: true
+lazytainer_ombi_enabled: true
+lazytainer_overseerr_enabled: true
+lazytainer_portainer_enabled: true
+lazytainer_prowlarr_enabled: true
+lazytainer_qbittorrent_enabled: true
+lazytainer_radarr_enabled: true
+lazytainer_sabnzbd_enabled: true
+lazytainer_sickchill_enabled: true
+lazytainer_sonarr_enabled: true
+lazytainer_transmission_enabled: true
+lazytainer_ubooquity_enabled: true
+lazytainer_unmanic_enabled: true
+lazytainer_utorrent_enabled: true
+lazytainer_wallabag_enabled: true
 
 
 
