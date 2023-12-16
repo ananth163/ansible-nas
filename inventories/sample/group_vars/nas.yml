@@ -209,14 +209,15 @@ samba_netbios_name: "{{ ansible_nas_hostname }}"
 ## Enable some applications
 portainer_enabled: false
 lazytainer_enabled: true
-jellyfin_enabled: true
-jackett_enabled: true
+traefik_enabled: false
+wallabag_enabled: false
 
 ## Applications controlled by Lazytainer
 lazytainer_jackett_enabled: true
 lazytainer_jellyfin_enabled: true
 
-
+# Traefik enabled applications
+wallabag_available_externally: false
 
 ## Firewall Settings
 
@@ -231,6 +232,7 @@ firewall_allowed_tcp_ports:
   - "9117" # Jackett
   - "8896" # Jellyfin HTTP
   - "8928" # Jellyfin HTTPS
+  - "7780" # Wallabag
 firewall_allowed_udp_ports: []
 
 

@@ -62,6 +62,16 @@
   environment:
     DIR: /usr/local/bin
 
+- name: Set Static ips for interface
+  community.general.nmcli:
+    conn_name: "static-ip"
+    type: ethernet
+    ifname: "{{ network_interface }}"
+    ip4: "{{ ip4_address }}"
+    gw4: "{{ gw4_address }}"
+    state: present
+    autoconnect: yes
+
 - name: "Permission share directories"
   ansible.builtin.file:
     path: "{{ item.path }}"

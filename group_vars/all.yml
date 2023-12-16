@@ -20,10 +20,15 @@
 ansible_nas_user: clearsky
 
 # Your email and domain, used for Let's Encrypt SSL certs
-ansible_nas_email: me@example.com
+ansible_nas_email: clearsky@ansiblenas.com
 
 # Applications will have subdomain SSL certificates created if Traefik is enabled, e.g. ansible-nas.<your-domain>, nextcloud.<your-domain>
 ansible_nas_domain: example.com
+
+# Network interface for Staic IP
+network_interface: ens33
+ip4_address: "192.168.1.50"
+gw4_address: "192.168.1.1"
 
 # What version of python ansible should use on target system (path to spesific binary)
 ansible_python_interpreter: /usr/bin/python3
